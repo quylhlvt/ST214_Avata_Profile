@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rlParent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/img_bg_splash">
+
+        <LinearLayout
+            android:id="@+id/linear_language"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="vertical"
+            android:paddingTop="46dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ctlTop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+
+                    android:id="@+id/tvTitle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/cookies_regular"
+                    android:gravity="center"
+                    android:text="@string/language"
+                    android:textColor="@color/app_color2"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/app_color"
+                    app:strokeJoinStyle="miter"
+                    app:strokeMiter="5dp"
+                    app:strokeWidth="2dp"
+                    style="@style/single_marquee"
+                    />
+
+                <TextView
+                    android:id="@+id/tvTitle1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/cookies_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/language"
+                    android:textColor="@color/app_color2"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/app_color"
+                    app:strokeJoinStyle="miter"
+                    app:strokeMiter="5dp"
+                    app:strokeWidth="2dp"
+                    style="@style/single_marquee"
+                    />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icBack"
+                    android:layout_width="37dp"
+                    android:layout_height="37dp"
+                    android:elevation="1dp"
+                    android:layout_marginStart="22dp"
+                    android:src="@drawable/ic_back_app"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imvDone"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="20dp"
+                    android:visibility="invisible"
+                    android:src="@drawable/ic_select_language"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcl_language"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                tools:itemCount="20"
+                tools:listitem="@layout/item_language"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ctlTop" />
+
+
+        </LinearLayout>
+<!--        &lt;!&ndash; native_ads &ndash;&gt;-->
+<!--        <FrameLayout-->
+<!--            android:id="@+id/native_ads"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            android:layout_marginStart="0dp"-->
+<!--            android:layout_marginTop="4dp">-->
+
+<!--            <include layout="@layout/ads_native_big_btn_top_shimmer" />-->
+<!--        </FrameLayout>-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
