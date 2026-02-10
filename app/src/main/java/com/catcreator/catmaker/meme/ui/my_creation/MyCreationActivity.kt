@@ -63,6 +63,8 @@ import com.catcreator.catmaker.meme.utils.showToast
 import com.catcreator.catmaker.meme.utils.toList
 import com.catcreator.catmaker.meme.R
 import com.catcreator.catmaker.meme.databinding.ActivityMyCreationBinding
+import com.catcreator.catmaker.meme.utils.DataHelper.dp
+import com.catcreator.catmaker.meme.utils.DataHelper.setMargins
 
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -125,11 +127,7 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityMyCreationBinding>() 
                                     ViewActivity::class.java
                                 ).putExtra("data", arrPathAvatar[pos]).putExtra("type", "avatar")
                             )
-
-
                     }
-
-
                     "delete" -> {
                         var dialog = DialogExit(
                             this@MyCreationActivity,
@@ -148,7 +146,6 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityMyCreationBinding>() 
                         }
                         dialog.show()
                     }
-
                     "edit" -> {
                         viewModel.getAvatar(arrPathAvatar[pos]) { avatar ->
                             if (!isInternetAvailable(this@MyCreationActivity) && avatar!!.online == true) {
@@ -203,8 +200,8 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityMyCreationBinding>() 
                             }
                         }
                     }
-
                     "longclick" -> {
+                        this@MyCreationActivity.binding.rcvAvatar.setMargins(16.dp(this@MyCreationActivity),16.dp(this@MyCreationActivity),16.dp(this@MyCreationActivity),50)
                         checkLongClick = true
                         this@MyCreationActivity.checkLongClick = true
 
@@ -226,7 +223,6 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityMyCreationBinding>() 
                             }
                         }
                     }
-
                     "tick" -> {
                         if (pos in arrCheckTick) {
                             arrCheckTick.remove(pos)
@@ -272,8 +268,8 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityMyCreationBinding>() 
                         }
                         dialog.show()
                     }
-
                     "longclick" -> {
+                        this@MyCreationActivity.binding.rcvDesign.setMargins(16.dp(this@MyCreationActivity),16.dp(this@MyCreationActivity),16.dp(this@MyCreationActivity),50)
                         checkLongClick = true
                         this@MyCreationActivity.checkLongClick = true
                         if (arrCheckTick.indexOf(pos) > -1) {
@@ -294,7 +290,6 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityMyCreationBinding>() 
                             }
                         }
                     }
-
                     "tick" -> {
                         if (pos in arrCheckTick) {
                             arrCheckTick.remove(pos)
@@ -314,9 +309,7 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityMyCreationBinding>() 
 
     override fun getLayoutId(): Int = R.layout.activity_my_creation
 
-
     override fun initView() {
-
         binding.apply {
             tvTitle.isSelected = true
             tvNoItem.isSelected = true
@@ -344,7 +337,6 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityMyCreationBinding>() 
                     LoadingStatus.Loading -> {
                         checkCallingDataOnline = true
                     }
-
                     LoadingStatus.Success -> {
                         if (DataHelper.arrBlackCentered.isNotEmpty() && !DataHelper.arrBlackCentered[0].checkDataOnline) {
                             checkCallingDataOnline = false
@@ -446,6 +438,8 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityMyCreationBinding>() 
 
     var checkLongClick = false
     fun hideLongClick() {
+        this@MyCreationActivity.binding.rcvAvatar.setMargins(16.dp(this@MyCreationActivity),16.dp(this@MyCreationActivity),16.dp(this@MyCreationActivity),0)
+        this@MyCreationActivity.binding.rcvDesign.setMargins(16.dp(this@MyCreationActivity),16.dp(this@MyCreationActivity),16.dp(this@MyCreationActivity),0)
         checkLongClick = false
         binding.imvTickAll.setImageResource(R.drawable.imv_tick_all_false)
         binding.imvTickAll.visibility = View.GONE
