@@ -1,4 +1,4 @@
-package com.catcreator.catmaker.meme
+package com.avatar.ocmaker.profile
 
 import org.junit.Assert
 import org.junit.Test

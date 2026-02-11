@@ -22,8 +22,8 @@
 
 
 -keep public class com.google.android.gms.** { public protected *; }
--keep class com.catcreator.catmaker.meme.ui.splash.** { *; }
--keep class com.catcreator.catmaker.meme.data.model.** { *; }
+-keep class com.avatar.ocmaker.profile.ui.splash.** { *; }
+-keep class com.avatar.ocmaker.profile.data.model.** { *; }
 
 -dontwarn org.bouncycastle.jsse.BCSSLParameters
 -dontwarn org.bouncycastle.jsse.BCSSLSocket

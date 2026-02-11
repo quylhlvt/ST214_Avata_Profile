@@ -1,0 +1,311 @@
+package com.avatar.ocmaker.profile.ui.main
+
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
+import androidx.lifecycle.lifecycleScope
+import com.avatar.ocmaker.profile.base.AbsBaseActivity
+import com.avatar.ocmaker.profile.data.callapi.reponse.DataResponse
+import com.avatar.ocmaker.profile.data.callapi.reponse.LoadingStatus
+import com.avatar.ocmaker.profile.data.model.BodyPartModel
+import com.avatar.ocmaker.profile.data.model.ColorModel
+import com.avatar.ocmaker.profile.data.model.CustomModel
+import com.avatar.ocmaker.profile.data.repository.ApiRepository
+import com.avatar.ocmaker.profile.dialog.DialogExit
+import com.avatar.ocmaker.profile.ui.category.CategoryActivity
+import com.avatar.ocmaker.profile.ui.my_creation.MyCreationActivity
+import com.avatar.ocmaker.profile.ui.quick_mix.QuickMixActivity
+import com.avatar.ocmaker.profile.ui.randomone.RandomCatActivity
+import com.avatar.ocmaker.profile.ui.setting.SettingActivity
+import com.avatar.ocmaker.profile.utils.CONST
+import com.avatar.ocmaker.profile.utils.DataHelper
+import com.avatar.ocmaker.profile.utils.DataHelper.getData
+import com.avatar.ocmaker.profile.utils.SharedPreferenceUtils
+import com.avatar.ocmaker.profile.utils.backPress
+import com.avatar.ocmaker.profile.utils.music.MusicLocal
+import com.avatar.ocmaker.profile.utils.newIntent
+import com.avatar.ocmaker.profile.utils.onSingleClick
+import com.avatar.ocmaker.profile.R
+import com.avatar.ocmaker.profile.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+import kotlin.collections.forEach
+
+@AndroidEntryPoint
+class MainActivity : AbsBaseActivity<ActivityMainBinding>() {
+    @Inject
+    lateinit var apiRepository: ApiRepository
+    var checkCallingDataOnline = false
+    override fun getLayoutId(): Int = R.layout.activity_main
+    private var networkReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            val connectivityManager =
+                context?.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+            val networkInfo = connectivityManager.activeNetworkInfo
+            if (!checkCallingDataOnline) {
+                if (networkInfo != null && networkInfo.isConnected) {
+                    var checkDataOnline = false
+                    DataHelper.arrBlackCentered.forEach {
+                        if (it.checkDataOnline) {
+                            checkDataOnline = true
+                            return@forEach
+                        }
+                    }
+                    if (!checkDataOnline) {
+                        lifecycleScope.launch(Dispatchers.IO) {
+                            getData(apiRepository)
+                        }
+                    }
+                } else {
+                    if (DataHelper.arrBlackCentered.isEmpty()) {
+                        lifecycleScope.launch(Dispatchers.IO) {
+                            getData(apiRepository)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    override fun onRestart() {
+        super.onRestart()
+        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        registerReceiver(networkReceiver, filter)
+    }
+
+
+    override fun initView() {
+
+
+        MusicLocal.isInSplashOrTutorial = false
+
+        binding.apply {
+            tv1.post {
+                tv1.isSelected = true
+            }
+            tv2.post {
+               tv2.isSelected = true
+            }
+            txtMyWork.post {
+                txtMyWork.isSelected = true
+            }
+            txtQuickMaker.post {
+                txtQuickMaker.isSelected = true
+            }
+        }
+        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        registerReceiver(networkReceiver, filter)
+        DataHelper.arrDataOnline.observe(this) {
+            it?.let {
+                when (it.loadingStatus) {
+                    LoadingStatus.Loading -> {
+                        checkCallingDataOnline = true
+                    }
+
+                    LoadingStatus.Success -> {
+                        if (DataHelper.arrBlackCentered.isNotEmpty() && !DataHelper.arrBlackCentered[0].checkDataOnline) {
+                            checkCallingDataOnline = false
+                            val listA = (it as DataResponse.DataSuccess).body ?: return@observe
+                            checkCallingDataOnline = true
+                            val sortedMap = listA
+                                .toList() // Chuyển map -> list<Pair<String, List<X10>>>
+                                .sortedBy { (_, list) ->
+                                    list.firstOrNull()?.level ?: Int.MAX_VALUE
+                                }
+                                .toMap()
+                            sortedMap.forEach { key, list ->
+                                var a = arrayListOf<BodyPartModel>()
+                                list.forEachIndexed { index, x10 ->
+                                    var b = arrayListOf<ColorModel>()
+                                    x10.colorArray.split(",").forEach { coler ->
+                                        var c = arrayListOf<String>()
+                                        if (coler == "") {
+                                            for (i in 1..x10.quantity) {
+                                                c.add(CONST.BASE_URL + "${CONST.BASE_CONNECT}/${x10.position}/${x10.parts}/${i}.png")
+                                            }
+                                            b.add(
+                                                ColorModel(
+                                                    "#",
+                                                    c
+                                                )
+                                            )
+                                        } else {
+                                            for (i in 1..x10.quantity) {
+                                                c.add(CONST.BASE_URL + "${CONST.BASE_CONNECT}/${x10.position}/${x10.parts}/${coler}/${i}.png")
+                                            }
+                                            b.add(
+                                                ColorModel(
+                                                    coler,
+                                                    c
+                                                )
+                                            )
+                                        }
+                                    }
+                                    a.add(
+                                        BodyPartModel(
+                                            "${CONST.BASE_URL}${CONST.BASE_CONNECT}$key/${x10.parts}/nav.png",
+                                            b
+                                        )
+                                    )
+                                }
+                                var dataModel =
+                                    CustomModel(
+                                        "${CONST.BASE_URL}${CONST.BASE_CONNECT}$key/avatar.png",
+                                        a,
+                                        true
+                                    )
+                                dataModel.bodyPart.forEach { mbodyPath ->
+                                    if (mbodyPath.icon.substringBeforeLast("/")
+                                            .substringAfterLast("/").substringAfter("-") == "1"
+                                    ) {
+                                        mbodyPath.listPath.forEach {
+                                            if (it.listPath[0] != "dice") {
+                                                it.listPath.add(0, "dice")
+                                            }
+                                        }
+                                    } else {
+                                        mbodyPath.listPath.forEach {
+                                            if (it.listPath[0] != "none") {
+                                                it.listPath.add(0, "none")
+                                                it.listPath.add(1, "dice")
+                                            }
+                                        }
+                                    }
+                                }
+                                DataHelper.arrBlackCentered.add(0, dataModel)
+                            }
+                        }
+                        checkCallingDataOnline = false
+                    }
+
+                    LoadingStatus.Error -> {
+                        checkCallingDataOnline = false
+                    }
+
+                    else -> {
+                        checkCallingDataOnline = true
+                    }
+                }
+            }
+        }
+    }
+
+
+    override fun initAction() {
+        binding.apply {
+            imgHome1Frame.onSingleClick {
+                if (isDataReady()) {
+                    startActivity(
+                        newIntent(
+                            applicationContext,
+                            CategoryActivity::class.java
+                        )
+                    )
+                } else {
+                    lifecycleScope.launch {
+                        val dialog= DialogExit(
+                            this@MainActivity,
+                            "awaitdata"
+                        )
+                        dialog.show()
+                        delay(1500)
+                        dialog.dismiss()
+                    }
+                }
+            }
+
+            btnQuickMaker.onSingleClick {
+                if (isDataReady()) {
+                    startActivity(
+                        newIntent(
+                            applicationContext,
+                            QuickMixActivity::class.java
+                        )
+                    )
+                } else {
+                    lifecycleScope.launch {
+                        val dialog= DialogExit(
+                            this@MainActivity,
+                            "awaitdata"
+                        )
+                        dialog.show()
+                        delay(1500)
+                        dialog.dismiss()
+                    }
+                }
+            }
+            imgHome2Frame.onSingleClick {
+                if (isDataReady()) {
+                    startActivity(
+                        newIntent(
+                            applicationContext,
+                            RandomCatActivity::class.java
+                        )
+                    )
+                } else {
+                    lifecycleScope.launch {
+                        val dialog= DialogExit(
+                            this@MainActivity,
+                            "awaitdata"
+                        )
+                        dialog.show()
+                        delay(1500)
+                        dialog.dismiss()
+                    }
+                }
+            }
+            btnMyAlbum.onSingleClick {
+                if (isDataReady()) {
+                    startActivity(
+                        newIntent(
+                            applicationContext,
+                            MyCreationActivity::class.java
+                        )
+                    )
+                } else {
+                    lifecycleScope.launch {
+                        val dialog= DialogExit(
+                            this@MainActivity,
+                            "awaitdata"
+                        )
+                        dialog.show()
+                        delay(1500)
+                        dialog.dismiss()
+                    }
+                }
+            }
+
+            imvSetting.onSingleClick {
+                startActivity(
+                    newIntent(
+                        applicationContext,
+                        SettingActivity::class.java
+                    )
+                )
+            }
+        }
+    }
+    override fun onStop() {
+        super.onStop()
+        try {
+            unregisterReceiver(networkReceiver)
+        } catch (e: Exception) {
+
+        }
+    }
+    private fun isDataReady(): Boolean {
+        return DataHelper.arrBlackCentered.isNotEmpty()
+    }
+
+    override fun onBackPressed() {
+        lifecycleScope.launch {
+            backPress(
+                SharedPreferenceUtils(applicationContext)
+            )
+        }
+    }
+}

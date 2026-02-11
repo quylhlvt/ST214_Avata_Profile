@@ -9,16 +9,16 @@ plugins {
 }
 
 android {
-    namespace 'com.catcreator.catmaker.meme'
+    namespace 'com.avatar.ocmaker.profile'
     compileSdk 36
     defaultConfig {
-        applicationId "com.catcreator.catmaker.meme"
+        applicationId "com.avatar.ocmaker.profile"
         minSdk 24
         targetSdk 36
-        versionCode 3
-        versionName "1.0.2"
+        versionCode 1
+        versionName "1.0.0"
         def formattedDate = new Date().format('MM.dd.yyyy')
-        archivesBaseName = "Cat_Creator_Meme_Cat_Maker_${versionName}_${formattedDate}"
+        archivesBaseName = "Avatar_Profile_Maker_${versionName}_${formattedDate}"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

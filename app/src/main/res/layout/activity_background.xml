@@ -78,7 +78,7 @@
             />
 
 
-        <com.catcreator.catmaker.meme.custom.DrawView
+        <com.avatar.ocmaker.profile.custom.DrawView
             android:id="@+id/drawView"
             android:layout_marginTop="10dp"
             android:layout_width="0dp"
@@ -97,7 +97,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop" />
-        </com.catcreator.catmaker.meme.custom.DrawView>
+        </com.avatar.ocmaker.profile.custom.DrawView>
 
         <ImageView
             android:id="@+id/navBottom"

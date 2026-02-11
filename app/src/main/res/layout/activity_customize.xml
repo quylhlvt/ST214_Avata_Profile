@@ -36,7 +36,7 @@
             android:layout_height="37dp"
             android:layout_marginEnd="4dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/ic_save"
+            android:src="@drawable/ic_next"
             app:layout_constraintBottom_toBottomOf="@id/imvBack"
             app:layout_constraintEnd_toEndOf="@+id/btnDice"
             app:layout_constraintTop_toTopOf="@id/imvBack" />
@@ -217,7 +217,7 @@
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:orientation="horizontal"
-                android:paddingStart="20dp"
+                android:paddingStart="16dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:itemCount="10"
                 tools:listitem="@layout/item_navigation" />

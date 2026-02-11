@@ -35,7 +35,7 @@
     </queries>
 
     <application
-        android:name="com.catcreator.catmaker.meme.App"
+        android:name="com.avatar.ocmaker.profile.App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -47,12 +47,12 @@
         tools:replace="android:fullBackupContent">
 
         <activity
-            android:name="com.catcreator.catmaker.meme.ui.randomone.RandomCatActivity"
+            android:name="com.avatar.ocmaker.profile.ui.randomone.RandomCatActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             />
         <activity
-            android:name="com.catcreator.catmaker.meme.ui.splash.SplashActivity"
+            android:name="com.avatar.ocmaker.profile.ui.splash.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -62,51 +62,51 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.catcreator.catmaker.meme.ui.language.LanguageActivity"
+            android:name="com.avatar.ocmaker.profile.ui.language.LanguageActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.catcreator.catmaker.meme.ui.permision.PermissionActivity"
+            android:name="com.avatar.ocmaker.profile.ui.permision.PermissionActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.catcreator.catmaker.meme.ui.tutorial.TutorialActivity"
+            android:name="com.avatar.ocmaker.profile.ui.tutorial.TutorialActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.catcreator.catmaker.meme.ui.my_creation.MyCreationActivity"
+            android:name="com.avatar.ocmaker.profile.ui.my_creation.MyCreationActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.catcreator.catmaker.meme.ui.succes.SuccessActivity"
+            android:name="com.avatar.ocmaker.profile.ui.succes.SuccessActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.catcreator.catmaker.meme.ui.view.ViewActivity"
+            android:name="com.avatar.ocmaker.profile.ui.view.ViewActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.catcreator.catmaker.meme.ui.main.MainActivity"
+            android:name="com.avatar.ocmaker.profile.ui.main.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.catcreator.catmaker.meme.ui.setting.SettingActivity"
+            android:name="com.avatar.ocmaker.profile.ui.setting.SettingActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.catcreator.catmaker.meme.ui.category.CategoryActivity"
+            android:name="com.avatar.ocmaker.profile.ui.category.CategoryActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.catcreator.catmaker.meme.ui.customview.CustomviewActivity"
+            android:name="com.avatar.ocmaker.profile.ui.customview.CustomviewActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.catcreator.catmaker.meme.ui.quick_mix.QuickMixActivity"
+            android:name="com.avatar.ocmaker.profile.ui.quick_mix.QuickMixActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.catcreator.catmaker.meme.ui.background.BackgroundActivity"
+            android:name="com.avatar.ocmaker.profile.ui.background.BackgroundActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
@@ -120,14 +120,14 @@
                 android:resource="@xml/filepaths" />
         </provider>
         <provider
-            android:name="com.catcreator.catmaker.meme.utils.share.whatsapp.StickerContentProvider"
-            android:authorities="com.catcreator.catmaker.meme.utils.share.whatsapp.StickerContentProvider"
+            android:name="com.avatar.ocmaker.profile.utils.share.whatsapp.StickerContentProvider"
+            android:authorities="com.avatar.ocmaker.profile.utils.share.whatsapp.StickerContentProvider"
             android:enabled="true"
             android:exported="true"
             android:readPermission="com.whatsapp.sticker.READ" />
 
         <service
-            android:name="com.catcreator.catmaker.meme.service.MyFirebaseMessagingService"
+            android:name="com.avatar.ocmaker.profile.service.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

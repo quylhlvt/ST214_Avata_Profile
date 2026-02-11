@@ -130,7 +130,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
-                    <com.catcreator.catmaker.meme.utils.OuterStrokeTextView
+                    <com.avatar.ocmaker.profile.utils.OuterStrokeTextView
                         android:id="@+id/tv1"
                         android:textColor="@color/white"
                         android:textSize="20sp"
@@ -186,7 +186,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
-                    <com.catcreator.catmaker.meme.utils.OuterStrokeTextView
+                    <com.avatar.ocmaker.profile.utils.OuterStrokeTextView
                         android:id="@+id/tv2"
                         android:textColor="@color/white"
                         android:textSize="20sp"

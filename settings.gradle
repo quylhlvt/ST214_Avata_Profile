@@ -39,5 +39,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Cat Creator Meme Cat Maker"
+rootProject.name = "Avatar Profile Maker"
 include ':app'

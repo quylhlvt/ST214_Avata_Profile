@@ -7,7 +7,7 @@
 
         <variable
             name="mTutorialModel"
-            type="com.catcreator.catmaker.meme.data.model.TutorialModel" />
+            type="com.avatar.ocmaker.profile.data.model.TutorialModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

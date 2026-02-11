@@ -22,7 +22,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.catcreator.catmaker.meme.utils.StrokeTextView
+        <com.avatar.ocmaker.profile.utils.StrokeTextView
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -149,7 +149,7 @@
                     android:freezesText="true"
                     android:marqueeRepeatLimit="marquee_forever"
                     android:singleLine="true"
-                    android:text="@string/my_work"
+                    android:text="@string/my_creation"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
             </LinearLayout>

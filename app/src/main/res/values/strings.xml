@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Cat Creator: Meme Cat Maker</string>
+    <string name="app_name" translatable="false">Avatar Profile Maker</string>
     <string name="this_action_may_contain_advertising">This action can contain ads</string>
     <string name="language">Language</string>
     <string name="next">Next</string>
@@ -52,16 +52,16 @@
     <string name="no">No</string>
     <string name="do_you_want_to_delete">Do you want to delete?</string>
     <string name="do_you_want_to_reset">Do you want to reset?</string>
-    <string name="character_maker">Character Maker</string>
+    <string name="maker">Maker</string>
     <string name="game_challenge">Game Challenge</string>
     <string name="my_character">My Character</string>
     <string name="setting">Setting</string>
     <string name="share_app">Share app</string>
     <string name="privacy_policy"><![CDATA[Privacy & policy]]></string>
     <string name="the_layer_have_only_one_item">The layer have only one item</string>
-    <string name="intro1">Make Your Perfect Meme Cat</string>
-    <string name="intro2">Diverse Your Cat Meme Style</string>
-    <string name="intro3">Variety Items</string>
+    <string name="intro1">Make Avatar Profile</string>
+    <string name="intro2">Character Diversity</string>
+    <string name="intro3">Items Diversity</string>
     <string name="you_have_not_selected_anything_yet">You have not selected any item yet</string>
     <string name="my_work">My Work</string>
     <string name="my_creation">My album</string>
