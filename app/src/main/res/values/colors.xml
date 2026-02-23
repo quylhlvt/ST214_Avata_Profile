@@ -78,10 +78,10 @@
     <color name="stroke_forcus_1">#6ADFFF</color>
     <color name="stroke_forcus_2">#3175EB</color>
     <color name="color_content_dialog">#991F2F4F</color>
-    <color name="app_color">#FFA4A4</color>
-    <color name="app_color2">#EF4096</color>
-    <color name="app_color3">#FC95BA</color>
-    <color name="app_color4">#FF00FB</color>
+    <color name="app_color">#00A8FF</color>
+    <color name="app_color2">#006498</color>
+    <color name="app_color3">#2AABEE</color>
+    <color name="app_color4">#2AABEE</color>
     <color name="app_color5">#AB5BFF</color>
     <color name="app_color6">#558B2F</color>
     <color name="app_color7">#FF9CFD</color>

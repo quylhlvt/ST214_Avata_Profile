@@ -45,9 +45,9 @@ class SettingActivity : AbsBaseActivity<ActivitySettingBinding>() {
                     )
                 )
             }
-//            imvMusic.onSingleClick {
-//                initMusic(imvMusic)
-//            }
+            imvMusic.onSingleClick {
+                initMusic(imvMusic)
+            }
             llRateUs.onSingleClick {
                 rateUs(0)
             }

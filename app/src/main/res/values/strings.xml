@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Avatar Profile Maker</string>
+    <string name="app_name" translatable="false">Bedroom Maker</string>
     <string name="this_action_may_contain_advertising">This action can contain ads</string>
     <string name="language">Language</string>
     <string name="next">Next</string>
@@ -17,7 +17,7 @@
     <string name="rate">Rate</string>
     <string name="exit">Exit</string>
     <string name="rate_us_0">You have not rated it yet!</string>
-    <string name="settings">Settings</string>
+    <string name="settings">Setting</string>
     <string name="roblox_character">Roblox Character</string>
     <string name="create">CREATE</string>
     <string name="customize">CUSTOMIZE</string>
@@ -30,7 +30,7 @@
     <string name="share">Share</string>
     <string name="add_to_telegram">Add to TeleGram</string>
     <string name="add_to_whatsapp">Add to Whatsapp</string>
-    <string name="pony_maker">Avatar Maker</string>
+    <string name="pony_maker">Bedroom Maker</string>
     <string name="trending_custom">Quick Create</string>
     <string name="trending">Trending</string>
     <string name="no_item_here">No current history</string>
@@ -59,9 +59,9 @@
     <string name="share_app">Share app</string>
     <string name="privacy_policy"><![CDATA[Privacy & policy]]></string>
     <string name="the_layer_have_only_one_item">The layer have only one item</string>
-    <string name="intro1">Make Avatar Profile</string>
-    <string name="intro2">Character Diversity</string>
-    <string name="intro3">Items Diversity</string>
+    <string name="intro1">Make Your Bedroom</string>
+    <string name="intro2">Diversity Bedroom</string>
+    <string name="intro3">Make Your Bedroom</string>
     <string name="you_have_not_selected_anything_yet">You have not selected any item yet</string>
     <string name="my_work">My Work</string>
     <string name="my_creation">My album</string>
@@ -108,5 +108,5 @@
     <string name="rate_successful">Thank you for rate our app</string>
     <string name="quickcreate">Quick Maker</string>
     <string name="generate_random">Generate Random</string>
-    <string name="random_cat">Random Avatar</string>
+    <string name="random_cat">Random Bedroom</string>
 </resources>

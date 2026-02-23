@@ -197,7 +197,7 @@ class MainActivity : AbsBaseActivity<ActivityMainBinding>() {
 
     override fun initAction() {
         binding.apply {
-            imgHome1Frame.onSingleClick {
+            btnCreate.onSingleClick {
                 if (isDataReady()) {
                     startActivity(
                         newIntent(
@@ -238,7 +238,7 @@ class MainActivity : AbsBaseActivity<ActivityMainBinding>() {
                     }
                 }
             }
-            imgHome2Frame.onSingleClick {
+            btnRandomCat.onSingleClick {
                 if (isDataReady()) {
                     startActivity(
                         newIntent(

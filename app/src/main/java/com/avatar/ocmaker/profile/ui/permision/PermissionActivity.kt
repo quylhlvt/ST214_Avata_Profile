@@ -54,22 +54,22 @@ class PermissionActivity : AbsBaseActivity<ActivityPermissionBinding>() {
             changeText(
                 this,
                 getString(R.string.allow),
-                R.color.app_color3,
-                R.font.bubblegum_sans_regular
+                R.color.white,
+                R.font.roboto_medium
             ),
             space,
             changeText(
                 this,
                 getString(R.string.app_name),
-                R.color.app_color3,
-                R.font.bubblegum_sans_regular
+                R.color.white,
+                R.font.roboto_medium
             ),
             space,
             changeText(
                 this,
                 getString(R.string.request_permission_to_use_notifications_to_notify_you),
-                R.color.app_color3,
-                R.font.bubblegum_sans_regular
+                R.color.white,
+                R.font.roboto_medium
             )
         )
 

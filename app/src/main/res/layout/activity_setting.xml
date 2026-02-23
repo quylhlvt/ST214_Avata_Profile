@@ -22,46 +22,45 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-<!--        <androidx.appcompat.widget.AppCompatImageView-->
-<!--            android:id="@+id/imvMusic"-->
-<!--            android:layout_width="37dp"-->
-<!--            android:layout_height="37dp"-->
-<!--            android:layout_marginTop="50dp"-->
-<!--            android:elevation="1dp"-->
-<!--            android:layout_marginEnd="20dp"-->
-<!--            android:src="@drawable/ic_music_app_true"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imvMusic"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="50dp"
+            android:elevation="1dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_music_app_true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-        <TextView
+        <com.avatar.ocmaker.profile.utils.OuterStrokeTextView
             android:id="@+id/titleSetting"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/settings"
-            android:singleLine="true"
-            android:freezesText="true"
             android:layout_marginHorizontal="80dp"
-            android:ellipsize="marquee"
-            android:marqueeRepeatLimit="marquee_forever"
             app:layout_constraintBottom_toBottomOf="@id/imvBack"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/imvBack"
             android:fontFamily="@font/cookies_regular"
-            android:textColor="@color/app_color2"
+            android:textColor="@color/white"
             android:textSize="24sp"
-            app:strokeColor="@color/app_color"
-            app:strokeJoinStyle="miter"
-            app:strokeMiter="5dp"
-            app:strokeWidth="2dp"
+            app:outerStrokeColor="@color/app_color2"
+            app:outerStrokeWidth="2dp"
+            app:outerStrokeJoinStyle="miter"
             style="@style/single_marquee"
+            android:singleLine="true"
+            android:freezesText="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
             />
         <LinearLayout
             android:id="@+id/llLanguage"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
+            android:layout_height="59dp"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="19dp"
             android:background="@drawable/bg_16_color"
@@ -76,14 +75,14 @@
                 android:src="@drawable/ic_lang_set" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="16dp"
-                android:fontFamily="@font/bubblegum_sans_regular"
+                android:fontFamily="@font/cookies_regular"
                 android:text="@string/language"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
@@ -94,7 +93,7 @@
         <LinearLayout
             android:id="@+id/llRateUs"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
+            android:layout_height="59dp"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="18dp"
             android:background="@drawable/bg_16_color"
@@ -109,14 +108,14 @@
                 android:src="@drawable/ic_reate_set" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="16dp"
-                android:fontFamily="@font/bubblegum_sans_regular"
+                android:fontFamily="@font/cookies_regular"
                 android:text="@string/rate_us"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
@@ -127,7 +126,7 @@
         <LinearLayout
             android:id="@+id/llShareApp"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
+            android:layout_height="59dp"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="18dp"
             android:background="@drawable/bg_16_color"
@@ -146,10 +145,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="16dp"
-                android:fontFamily="@font/bubblegum_sans_regular"
+                android:fontFamily="@font/cookies_regular"
                 android:text="@string/share_app"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
@@ -160,7 +159,7 @@
         <LinearLayout
             android:id="@+id/llPrivacy"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
+            android:layout_height="59dp"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="18dp"
             android:background="@drawable/bg_16_color"
@@ -179,10 +178,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="16dp"
-                android:fontFamily="@font/bubblegum_sans_regular"
+                android:fontFamily="@font/cookies_regular"
                 android:text="@string/privacy_amp_policy"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"

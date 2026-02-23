@@ -23,9 +23,9 @@ fun ConstraintLayout.setBGCV(check: LanguageModel) {
 @BindingAdapter("setCard")
 fun MaterialCardView.setCard(model: LanguageModel) {
     val color = if (model.active) {
-        ContextCompat.getColor(context, R.color.app_color3)
-    } else {
         ContextCompat.getColor(context, R.color.white)
+    } else {
+        ContextCompat.getColor(context, R.color.app_color2)
     }
 
     strokeColor = color
@@ -44,7 +44,7 @@ fun TextView.setTextColor(check: Boolean) {
     if (check) {
         this.setTextColor("#ffffff".toColorInt())
     } else {
-        this.setTextColor("#FF00FB".toColorInt())
+        this.setTextColor("#006498".toColorInt())
     }
 }
 @BindingAdapter("setBG")

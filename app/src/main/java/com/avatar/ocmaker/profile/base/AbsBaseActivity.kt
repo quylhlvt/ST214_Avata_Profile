@@ -36,12 +36,12 @@ abstract class AbsBaseActivity<V : ViewDataBinding> : AppCompatActivity() {
     abstract fun getLayoutId(): Int
     abstract fun initView()
     abstract fun initAction()
-//    fun initMusic( musicButtons: ImageView){
-//        var isPlayer= MusicLocal.status(this@AbsBaseActivity)
-//        isPlayer = ! isPlayer
-//        MusicLocal.toggle(this@AbsBaseActivity,isPlayer)
-//        updateMusicIcon(musicButtons)
-//    }
+    fun initMusic( musicButtons: ImageView){
+        var isPlayer= MusicLocal.status(this@AbsBaseActivity)
+        isPlayer = ! isPlayer
+        MusicLocal.toggle(this@AbsBaseActivity,isPlayer)
+        updateMusicIcon(musicButtons)
+    }
     open fun updateMusicIcon( musicButtons: ImageView) {
         val isPlaying = MusicLocal.status(this@AbsBaseActivity)
     if (isPlaying) {

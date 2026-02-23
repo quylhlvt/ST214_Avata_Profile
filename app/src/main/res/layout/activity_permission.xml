@@ -5,7 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/img_bg_splash">
+        android:background="@drawable/img_bg_start">
 
         <TextView
             android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:layout_marginTop="50dp"
             android:fontFamily="@font/cookies_regular"
             android:text="@string/permission"
-            android:textColor="@color/app_color2"
+            android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -29,8 +29,10 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imv"
-            android:layout_width="167dp"
-            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="68dp"
+            android:layout_width="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            android:layout_height="0dp"
             android:adjustViewBounds="true"
             android:src="@drawable/img_per"
             app:layout_constraintEnd_toEndOf="parent"
@@ -79,10 +81,10 @@
                         android:layout_alignParentBottom="true"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="16dp"
-                        android:fontFamily="@font/nunito_semi_bold"
+                        android:fontFamily="@font/roboto_semibold"
                         android:gravity="center"
                         android:text="@string/storage"
-                        android:textColor="@color/app_color3"
+                        android:textColor="@color/app_color2"
                         android:textSize="16sp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -115,10 +117,10 @@
                         android:layout_alignParentBottom="true"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="16dp"
-                        android:fontFamily="@font/nunito_semi_bold"
+                        android:fontFamily="@font/roboto_semibold"
                         android:gravity="center"
                         android:text="@string/notifications"
-                        android:textColor="@color/app_color3"
+                        android:textColor="@color/app_color2"
                         android:textSize="16sp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -136,18 +138,22 @@
 
         <com.avatar.ocmaker.profile.utils.OuterStrokeTextView
             android:id="@+id/btnContinue"
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/bubblegum_sans_regular"
+            android:fontFamily="@font/cookies_regular"
             android:gravity="center"
             android:padding="10dp"
             android:layout_marginBottom="120dp"
             android:text="@string/continue2"
-            app:outerStrokeColor="@color/app_color4"
+            app:outerStrokeColor="@color/app_color2"
             app:outerStrokeWidth="2dp"
             app:outerStrokeJoinStyle="miter"
             android:textColor="@color/white"
             android:textSize="20sp"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:freezesText="true"
+            style="@style/single_marquee"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

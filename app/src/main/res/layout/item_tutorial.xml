@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <TextView
+        <com.avatar.ocmaker.profile.utils.StrokeAppCompatTextView
             android:id="@+id/tv1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,8 +39,8 @@
             android:fontFamily="@font/cookies_regular"
             android:gravity="center"
             android:text="@{mTutorialModel.title}"
-            android:textColor="@color/app_color2"
-            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:textSize="22sp"
             android:freezesText="true"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
@@ -50,7 +50,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:strokeColor="@color/app_color"
+            app:strokeColor="@color/app_color2"
             app:strokeJoinStyle="miter"
             app:strokeMiter="5dp"
             app:strokeWidth="2dp"

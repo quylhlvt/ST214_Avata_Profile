@@ -2,6 +2,10 @@ package com.avatar.ocmaker.profile
 
 import android.app.Application
 import android.content.Context
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ProcessLifecycleOwner
+import com.avatar.ocmaker.profile.utils.music.MusicLocal
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.HiltAndroidApp
@@ -20,8 +24,18 @@ class App : Application()  {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        ProcessLifecycleOwner.get().lifecycle.addObserver(object : DefaultLifecycleObserver {
+            override fun onStart(owner: LifecycleOwner) {
+                // App vào foreground → mở lại nhạc
+                if (!MusicLocal.isInSplashOrTutorial &&MusicLocal.home)
+                    MusicLocal.play(context)
 
-
+            }
+            override fun onStop(owner: LifecycleOwner) {
+                // App ra background → tạm dừng nhạc
+                MusicLocal.pause()
+            }
+        })
     }
 
 }

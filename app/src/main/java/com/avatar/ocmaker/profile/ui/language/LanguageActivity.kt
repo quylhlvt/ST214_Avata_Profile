@@ -35,11 +35,13 @@ class LanguageActivity : AbsBaseActivity<ActivityLanguageBinding>() {
         codeLang = providerSharedPreference.getStringValue("language")
         if (codeLang.equals("")) {
             binding.icBack.visibility = View.GONE
+            binding.rlParent.setBackgroundResource(R.drawable.img_bg_start)
             binding.tvTitle2.visibility = View.GONE
 //            binding.imvDone.setImageResource(R.drawable.ic_tick_2)
         }else{
 //            binding.imvDone.setImageResource(R.drawable.ic_tick)
             binding.tvTitle1.visibility = View.GONE
+            binding.rlParent.setBackgroundResource(R.drawable.img_bg_splash)
             binding.imvDone.visibility = View.VISIBLE
         }
         binding.rclLanguage.itemAnimator = null
