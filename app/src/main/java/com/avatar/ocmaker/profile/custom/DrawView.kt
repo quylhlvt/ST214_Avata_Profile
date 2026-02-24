@@ -117,7 +117,7 @@ open class DrawView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
             borderPaint.color = typedArray.getColor(
                 R.styleable.StickerView_borderColor, ContextCompat.getColor(context, R.color.color_draw)
             )
-            borderPaint.alpha = typedArray.getInteger(R.styleable.StickerView_borderAlpha, 128)
+            borderPaint.alpha = typedArray.getInteger(R.styleable.StickerView_borderAlpha, 255)
             borderPaint.strokeWidth = 10.0f
             borderPaint.pathEffect = DashPathEffect(floatArrayOf(28f, 18f), 0f)
 
@@ -708,7 +708,6 @@ open class DrawView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
         icon.x = x
         icon.y = y
         icon.getMatrix().reset()
-
         // Thu nhỏ icon xuống 39dp
 
         val targetSizePx = dpToPx(32)

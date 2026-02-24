@@ -6,6 +6,7 @@ import com.avatar.ocmaker.profile.base.BaseDialog
 import com.avatar.ocmaker.profile.utils.onSingleClick
 import com.avatar.ocmaker.profile.R
 import com.avatar.ocmaker.profile.databinding.DialogColorPickerBinding
+import java.util.Locale
 
 
 class ChooseColorDialog(context: Activity) : BaseDialog<DialogColorPickerBinding>(context, false) {
@@ -14,19 +15,20 @@ class ChooseColorDialog(context: Activity) : BaseDialog<DialogColorPickerBinding
     override fun getContentView(): Int = R.layout.dialog_color_picker
 
     override fun initView() {
-        binding.apply {
-            colorPickerView.apply {
-                hueSliderView = hueSlider
-            }
-            txtColor.post { txtColor.text = String.format("#%06X", 0xFFFFFF and color) }
-        }
+        binding.colorPickerView.hueSliderView = binding.hueSlider
+        updateHexText(color)
     }
 
     override fun bindView() {
         binding.apply {
-            colorPickerView.setOnColorChangedListener { newColor -> color = newColor
-                txtColor.post { txtColor.text = String.format("#%06X", 0xFFFFFF and color) } }
+
+            colorPickerView.setOnColorChangedListener { newColor ->
+                color = newColor
+                updateHexText(color)
+            }
+
             btnClose.onSingleClick { dismiss() }
+
             btnDone.onSingleClick {
                 dismiss()
                 onDoneEvent.invoke(color)
@@ -34,5 +36,9 @@ class ChooseColorDialog(context: Activity) : BaseDialog<DialogColorPickerBinding
         }
     }
 
-
+    private fun updateHexText(color: Int) {
+        val hex = color and 0xFFFFFF
+        binding.txtColor.text =
+            String.format(Locale.US, "#%06x", hex)
+    }
 }

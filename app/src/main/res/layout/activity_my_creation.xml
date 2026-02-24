@@ -18,19 +18,18 @@
             android:layout_height="37dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="50dp"
-            android:elevation="1dp"
+            android:elevation="2dp"
             android:src="@drawable/ic_back_app"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <com.avatar.ocmaker.profile.utils.OuterStrokeTextView
             android:id="@+id/tvTitle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:fontFamily="@font/cookies_regular"
             android:text="@string/my_work"
-            android:maxWidth="200dp"
-            android:textColor="@color/app_color2"
+            android:textColor="@color/white"
             android:textSize="24sp"
             app:strokeColor="@color/app_color"
             app:layout_constraintBottom_toBottomOf="@id/imvBack"
@@ -38,9 +37,12 @@
             app:layout_constraintStart_toStartOf="parent"
             android:gravity="center"
             app:layout_constraintTop_toTopOf="@id/imvBack"
-            android:layout_marginHorizontal="100dp"
-            android:singleLine="true"
+            android:layout_marginHorizontal="80dp"
+            app:outerStrokeColor="@color/app_color2"
+            app:outerStrokeWidth="2dp"
+            app:outerStrokeJoinStyle="miter"
             style="@style/single_marquee"
+            android:singleLine="true"
             android:freezesText="true"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
@@ -95,7 +97,7 @@
                     android:layout_height="0dp"
                     android:background="@drawable/bg_btn_my_work"
                     android:ellipsize="marquee"
-                    android:fontFamily="@font/bubblegum_sans_regular"
+                    android:fontFamily="@font/rufing_personaluse"
                     android:freezesText="true"
                     android:gravity="center"
                     android:marqueeRepeatLimit="marquee_forever"
@@ -118,10 +120,10 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="@drawable/bg_btn_my_work_unselect"
-                    android:fontFamily="@font/bubblegum_sans_regular"
+                    android:fontFamily="@font/rufing_personaluse"
                     android:gravity="center"
                     android:text="@string/design"
-                    android:textColor="@color/app_color3"
+                    android:textColor="@color/app_color2"
                     android:textSize="16sp"
                     app:layout_constraintDimensionRatio="1.67:0.45"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -143,8 +145,9 @@
 <!--            <include layout="@layout/ads_native_banner_shimmer" />-->
 <!--        </FrameLayout>-->
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/llNull"
+            android:visibility="gone"
+
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:gravity="center"
@@ -152,26 +155,26 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/img_no_item"/>
+<!--        <ImageView-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="150dp"-->
+<!--            android:adjustViewBounds="true"-->
+<!--            android:src="@drawable/img_no_item"/>-->
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvNoItem"
-                android:layout_width="150dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/single_marquee"
                 android:gravity="center"
-                android:fontFamily="@font/bubblegum_sans_regular"
+                android:fontFamily="@font/rufing_personaluse"
                 android:text="@string/no_item_here"
-                android:textColor="@color/app_color3"
+                android:textColor="@color/app_color2"
                 android:freezesText="true"
                 android:ellipsize="marquee"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:singleLine="true"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

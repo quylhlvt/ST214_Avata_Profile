@@ -1,7 +1,9 @@
 package com.avatar.ocmaker.profile.custom.listener.listenerdraw
 
 import android.graphics.Canvas
+import android.graphics.LinearGradient
 import android.graphics.Paint
+import android.graphics.Shader
 import android.graphics.drawable.Drawable
 import android.view.MotionEvent
 import androidx.annotation.IntDef
@@ -53,18 +55,18 @@ class BitmapDrawIcon(drawable: Drawable?, @Gravity gravity: Int) : DrawableDraw(
 //        paint.style = Paint.Style.FILL
 //        paint.alpha = 255
 //        val gradient = LinearGradient(
-//            x - radius, y,
-//            x + radius, y,
+//            x, y -radius,
+//            x, y -radius ,
 //            intArrayOf(
-//                "#FF7EFEFD".toColorInt(), // Thêm FF → opaque hoàn toàn
-//                "#FFF5A8F6".toColorInt()  // Thêm FF
+//                "#2AACEF".toColorInt(),
+//                "#FEE168".toColorInt()
 //            ),
 //            null,
 //            Shader.TileMode.CLAMP
 //        )
-
+//
 //        paint.shader = gradient
-        paint.color= "#FC95BA".toColorInt()
+        paint.color= "#FECB00".toColorInt()
 //        canvas.drawCircle(x, y, radius, paint)
 
 

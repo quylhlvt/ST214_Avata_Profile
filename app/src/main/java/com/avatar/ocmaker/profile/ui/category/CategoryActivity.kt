@@ -229,7 +229,6 @@ class CategoryActivity : AbsBaseActivity<ActivityCategoryBinding>() {
         binding.apply {
             imvBack.onSingleClick {
                     finish()
-
             }
             adapter.onCLick = {
                 if (DataHelper.arrBlackCentered[it].checkDataOnline) {

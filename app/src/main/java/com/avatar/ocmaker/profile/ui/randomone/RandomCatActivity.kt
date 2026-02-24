@@ -86,6 +86,7 @@ class RandomCatActivity : AbsBaseActivity<ActivityRandomCatBinding>() {
         }
 
         binding.apply {
+            txtGenerate.isSelected =true
             imvNext.isEnabled = false
             btnRandomize.isEnabled = false
             imvNext.alpha = 0.5f

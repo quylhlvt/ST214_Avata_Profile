@@ -42,7 +42,7 @@ class NavAdapter(context: Context) : AbsBaseAdapter<BodyPartModel, ItemNavigatio
         if (posNav == position) {
             binding.bg.strokeColor = ContextCompat.getColor(
                 binding.root.context,
-                R.color.app_color5
+                R.color.app_color2
             )
         } else {
             binding.bg.strokeColor = ContextCompat.getColor(

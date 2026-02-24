@@ -11,7 +11,7 @@
         <View
             android:id="@+id/guideline_vertical"
             android:layout_width="match_parent"
-            android:layout_height="370dp"
+            android:layout_height="300dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent" />
         <androidx.appcompat.widget.AppCompatImageView
@@ -25,7 +25,7 @@
             android:layout_width="37dp"
             android:layout_height="37dp"
             android:layout_marginTop="50dp"
-            android:elevation="1dp"
+            android:elevation="2dp"
             android:src="@drawable/ic_back_app"
             android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -84,21 +84,19 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layerType="hardware"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="60dp"
             android:layout_marginHorizontal="6dp"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/guideline_vertical"
             app:layout_constraintTop_toBottomOf="@+id/llTop">
-
             <ImageView
                 android:id="@+id/imvBackground"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop" />
         </com.avatar.ocmaker.profile.custom.DrawView>
-
         <ImageView
             android:id="@+id/navBottom"
             android:layout_width="0dp"
@@ -121,21 +119,22 @@
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@id/ctl">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/btnBg"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:src="@drawable/imv_bg_true" />
+<!--            <androidx.appcompat.widget.AppCompatImageView-->
+<!--                android:id="@+id/btnBg"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:src="@drawable/imv_bg_true" />-->
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/btnItem"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
-                android:src="@drawable/imv_item" />
+                android:src="@drawable/imv_item_true" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/btnBgText"
@@ -153,6 +152,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="0dp"
             android:layout_height="38dp"
             android:layout_marginBottom="-18dp"
@@ -218,27 +218,26 @@
             android:id="@+id/ctl"
             android:layout_width="match_parent"
             android:layout_height="280dp"
-            android:layout_marginBottom="15dp"
-            app:layout_constraintBottom_toTopOf="@id/llBottom">
+            app:layout_constraintBottom_toBottomOf="parent">
 
-            <LinearLayout
-                android:layout_marginTop="30dp"
-                android:id="@+id/llBG"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <include
-                    android:id="@+id/iclBg"
-                    layout="@layout/layout_bg"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:visibility="visible" />
-            </LinearLayout>
+<!--            <LinearLayout-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                android:id="@+id/llBG"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent">-->
+<!--                <include-->
+<!--                    android:id="@+id/iclBg"-->
+<!--                    layout="@layout/layout_bg"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:visibility="visible" />-->
+<!--            </LinearLayout>-->
 
             <LinearLayout
                 android:id="@+id/llStiker"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <include
                     android:id="@+id/iclStiker"
@@ -293,14 +292,13 @@
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/titleFame"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="38dp"
                     android:layout_marginBottom="-20dp"
 
                     app:cardElevation="8dp"
-                    app:cardCornerRadius="17dp"
                     app:strokeWidth="0dp"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-                    app:layout_constraintDimensionRatio="1.41:0.44"
+                    app:layout_constraintDimensionRatio="0.98:0.38"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent">
                     <FrameLayout
@@ -314,12 +312,12 @@
                             style="@style/single_marquee"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginHorizontal="20dp"
+                            android:layout_marginHorizontal="10dp"
                             android:fontFamily="@font/cookies_regular"
                             android:gravity="center"
                             android:text="@string/loading"
                             android:textColor="@color/white"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
                             app:strokeJoinStyle="miter" />
                     </FrameLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -327,9 +325,9 @@
                     android:id="@+id/constraintLayout"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginHorizontal="45dp"
+                    android:layout_marginHorizontal="42dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="2.7:1.32"
+                    app:layout_constraintDimensionRatio="2.76:1.28"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -342,28 +340,28 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginHorizontal="15dp"
-                            android:layout_marginVertical="12dp"
-                            android:id="@+id/imgInLoading"
-                            android:src="@drawable/img_in_loading"/>
+                        <!--                        <ImageView-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="match_parent"-->
+                        <!--                            android:layout_marginHorizontal="15dp"-->
+                        <!--                            android:layout_marginVertical="12dp"-->
+                        <!--                            android:id="@+id/imgInLoading"-->
+                        <!--                            android:src="@drawable/img_in_loading"/>-->
 
                         <TextView
                             android:id="@+id/txtContent"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="20dp"
-                            android:fontFamily="@font/bubblegum_sans_regular"
+                            android:fontFamily="@font/cookies_regular"
                             android:gravity="center"
                             android:text="@string/wait_a_few_second"
-                            android:textColor="@color/app_color5"
-                            android:textSize="16sp"
-                            app:layout_constraintBottom_toBottomOf="@+id/imgInLoading"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/imgInLoading" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <!--                        <com.airbnb.lottie.LottieAnimationView-->
                         <!--                            android:id="@+id/animationView"-->

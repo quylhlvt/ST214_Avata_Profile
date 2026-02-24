@@ -211,7 +211,7 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityMyCreationBinding>() 
                         submitList(arrPathAvatar)
                         this@MyCreationActivity.binding.apply {
                             imvTickAll.show()
-                           imvDelete.show()
+//                           imvDelete.show()
 //                            llBottom.show()
                             layoutSticker.show()
                             if (arrCheckTick.size == arrPathAvatar.size) {
@@ -280,7 +280,7 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityMyCreationBinding>() 
                         submitList(arrPathDesign)
                         this@MyCreationActivity.binding.apply {
                             imvTickAll.show()
-                           imvDelete.show()
+//                           imvDelete.show()
                             llBottom.show()
 
                             if (arrCheckTick.size == arrPathDesign.size) {
@@ -444,7 +444,7 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityMyCreationBinding>() 
         binding.imvTickAll.setImageResource(R.drawable.imv_tick_all_false)
         binding.imvTickAll.visibility = View.GONE
         binding.llBottom.visibility = View.GONE
-        binding.imvDelete.visibility = View.GONE
+//        binding.imvDelete.visibility = View.GONE
         binding.layoutSticker.visibility = View.GONE
         adapterAvatar.checkLongClick = false
         adapterDesign.checkLongClick = false
@@ -691,62 +691,62 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityMyCreationBinding>() 
                     }
                 }
             }
-           imvDelete.onSingleClick {
-                if (checkAvatar) {
-                    if (adapterAvatar.arrCheckTick.isEmpty()) {
-                        showToast(
-                            this@MyCreationActivity,
-                            R.string.you_have_not_selected_anything_yet
-                        )
-
-                    } else {
-                        var dialog = DialogExit(
-                            this@MyCreationActivity,
-                            "delete"
-                        )
-                        dialog.onClick = {
-                            adapterAvatar.arrCheckTick.forEach { pos ->
-                                viewModel.deleteAvatar(arrPathAvatar[pos])
-                                File(arrPathAvatar[pos]).delete()
-                            }
-                            getData()
-//                            arrPathAvatar.remove()
-                            hideLongClick()
-                            showToast(
-                                this@MyCreationActivity,
-                                R.string.file_deleted_successfully
-                            )
-                        }
-                        dialog.show()
-                    }
-                } else {
-                    if (adapterDesign.arrCheckTick.isEmpty()) {
-                        showToast(
-                            this@MyCreationActivity,
-                            R.string.you_have_not_selected_anything_yet
-                        )
-                        return@onSingleClick
-                    } else {
-                        var dialog = DialogExit(
-                            this@MyCreationActivity,
-                            "delete"
-                        )
-                        dialog.onClick = {
-                            adapterDesign.arrCheckTick.forEach { pos ->
-                                viewModel.deleteAvatar(arrPathDesign[pos])
-                                File(arrPathDesign[pos]).delete()
-                            }
-                            getData()
-                            hideLongClick()
-                            showToast(
-                                this@MyCreationActivity,
-                                R.string.file_deleted_successfully
-                            )
-                        }
-                        dialog.show()
-                    }
-                }
-            }
+//           imvDelete.onSingleClick {
+//                if (checkAvatar) {
+//                    if (adapterAvatar.arrCheckTick.isEmpty()) {
+//                        showToast(
+//                            this@MyCreationActivity,
+//                            R.string.you_have_not_selected_anything_yet
+//                        )
+//
+//                    } else {
+//                        var dialog = DialogExit(
+//                            this@MyCreationActivity,
+//                            "delete"
+//                        )
+//                        dialog.onClick = {
+//                            adapterAvatar.arrCheckTick.forEach { pos ->
+//                                viewModel.deleteAvatar(arrPathAvatar[pos])
+//                                File(arrPathAvatar[pos]).delete()
+//                            }
+//                            getData()
+////                            arrPathAvatar.remove()
+//                            hideLongClick()
+//                            showToast(
+//                                this@MyCreationActivity,
+//                                R.string.file_deleted_successfully
+//                            )
+//                        }
+//                        dialog.show()
+//                    }
+//                } else {
+//                    if (adapterDesign.arrCheckTick.isEmpty()) {
+//                        showToast(
+//                            this@MyCreationActivity,
+//                            R.string.you_have_not_selected_anything_yet
+//                        )
+//                        return@onSingleClick
+//                    } else {
+//                        var dialog = DialogExit(
+//                            this@MyCreationActivity,
+//                            "delete"
+//                        )
+//                        dialog.onClick = {
+//                            adapterDesign.arrCheckTick.forEach { pos ->
+//                                viewModel.deleteAvatar(arrPathDesign[pos])
+//                                File(arrPathDesign[pos]).delete()
+//                            }
+//                            getData()
+//                            hideLongClick()
+//                            showToast(
+//                                this@MyCreationActivity,
+//                                R.string.file_deleted_successfully
+//                            )
+//                        }
+//                        dialog.show()
+//                    }
+//                }
+//            }
 
             btnAvatar.onSingleClick {
                 if (!checkAvatar) {
@@ -761,7 +761,7 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityMyCreationBinding>() 
                     btnDesign.setTextColor(
                         ContextCompat.getColor(
                             this@MyCreationActivity,
-                            R.color.app_color3
+                            R.color.app_color2
                         )
                     )
                     btnDesign.setBackgroundResource(R.drawable.bg_btn_my_work_unselect)
@@ -785,7 +785,7 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityMyCreationBinding>() 
                     btnAvatar.setTextColor(
                         ContextCompat.getColor(
                             this@MyCreationActivity,
-                            R.color.app_color3
+                            R.color.app_color2
                         )
                     )
                     rcvDesign.show()

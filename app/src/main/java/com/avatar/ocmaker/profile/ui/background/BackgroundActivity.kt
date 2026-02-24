@@ -121,7 +121,7 @@ class BackgroundActivity : AbsBaseActivity<ActivityBackgroundBinding>() {
             if (imeVisible) {
                 // 👉 Bàn phím HIỆN
                 setLayoutParam(
-                    binding.llBottom,
+                    binding.ctl,
                     0f,
                     0f,
                     dpToPx(200f, applicationContext),
@@ -133,7 +133,7 @@ class BackgroundActivity : AbsBaseActivity<ActivityBackgroundBinding>() {
                 }, 50)
                 // 👉 Bàn phím ẨN
                 setLayoutParam(
-                    binding.llBottom,
+                    binding.ctl,
                     0f,
                     0f,
                     dpToPx(0f, applicationContext),
@@ -147,11 +147,11 @@ class BackgroundActivity : AbsBaseActivity<ActivityBackgroundBinding>() {
 
     fun initRcv() {
         binding.apply {
-            iclBg.rcvColor.itemAnimator = null
-            iclBg.rcvColor.adapter = adapterColor
-
-            iclBg.rcvImage.itemAnimator = null
-            iclBg.rcvImage.adapter = adapterImage
+//            iclBg.rcvColor.itemAnimator = null
+//            iclBg.rcvColor.adapter = adapterColor
+//
+//            iclBg.rcvImage.itemAnimator = null
+//            iclBg.rcvImage.adapter = adapterImage
 
             iclText.rcvColor.itemAnimator = null
             iclText.rcvColor.adapter = adapterColorText
@@ -172,9 +172,10 @@ class BackgroundActivity : AbsBaseActivity<ActivityBackgroundBinding>() {
         lifecycleScope.launch(Dispatchers.IO) {
             viewModel.loadDataDefault(this@BackgroundActivity)
             viewModel.updatePathDefault(path)
-            addDrawable(viewModel.pathDefault, true)
+//            addDrawable(viewModel.pathDefault, true)
 
             withContext(Dispatchers.Main) {
+                Glide.with(this@BackgroundActivity).load(viewModel.pathDefault).into(binding.imvBackground)
                 adapterImage.submitList(viewModel.backgroundImageList)
                 adapterColor.submitList(viewModel.backgroundColorList)
                 adapterStiker.submitList(viewModel.stickerList)
@@ -250,19 +251,19 @@ class BackgroundActivity : AbsBaseActivity<ActivityBackgroundBinding>() {
                 clearFocus()
             }
 
-            btnBg.onSingleClick {
-                hideKeyboard()
-                selectBottomTab(btnBg)
-                llBG.show()
-                linearbg.show()
-                llStiker.hide()
-                llText.hide()
-                llTextBG.hide()
-            }
+//            btnBg.onSingleClick {
+//                hideKeyboard()
+//                selectBottomTab(btnBg)
+////                llBG.show()
+//                linearbg.show()
+//                llStiker.hide()
+//                llText.hide()
+//                llTextBG.hide()
+//            }
             btnItem.onSingleClick {
                 hideKeyboard()
                 selectBottomTab(btnItem)
-                llBG.hide()
+//                llBG.hide()
                 llStiker.show()
                 llText.hide()
                 linearbg.hide()
@@ -271,7 +272,7 @@ class BackgroundActivity : AbsBaseActivity<ActivityBackgroundBinding>() {
             btnBgText.onSingleClick {
                 hideKeyboard()
                 selectBottomTab(btnBgText)
-                llBG.hide()
+//                llBG.hide()
                 linearbg.hide()
                 llStiker.hide()
                 llTextBG.show()
@@ -280,34 +281,34 @@ class BackgroundActivity : AbsBaseActivity<ActivityBackgroundBinding>() {
             btnText.onSingleClick {
                 hideKeyboard()
                 selectBottomTab(btnText)
-                llBG.hide()
+//                llBG.hide()
                 linearbg.hide()
                 llStiker.hide()
                 llTextBG.hide()
                 llText.show()
             }
-            binding.apply {
-                btnImage.onSingleClick {
-                    iclBg.apply {
-                        rcvImage.show()
-                        rcvColor.hide()
-                    }
-                    btnImage.setBackgroundResource(R.drawable.img_select)
-                    txtImgage.setTextColor( ContextCompat.getColor(this@BackgroundActivity, R.color.white))
-                    btnColor.setBackgroundResource(R.drawable.img_unselect)
-                    txtColor.setTextColor( ContextCompat.getColor(this@BackgroundActivity, R.color.app_color3))
-                }
-                btnColor.onSingleClick {
-                    iclBg.apply {
-                        rcvColor.show()
-                        rcvImage.hide()
-                    }
-                    txtColor.setTextColor( ContextCompat.getColor(this@BackgroundActivity, R.color.white))
-                    btnColor.setBackgroundResource(R.drawable.img_select)
-                    txtImgage.setTextColor( ContextCompat.getColor(this@BackgroundActivity, R.color.app_color3))
-                    btnImage.setBackgroundResource(R.drawable.img_unselect)
-                }
-            }
+//            binding.apply {
+//                btnImage.onSingleClick {
+//                    iclBg.apply {
+//                        rcvImage.show()
+//                        rcvColor.hide()
+//                    }
+//                    btnImage.setBackgroundResource(R.drawable.img_select)
+//                    txtImgage.setTextColor( ContextCompat.getColor(this@BackgroundActivity, R.color.white))
+//                    btnColor.setBackgroundResource(R.drawable.img_unselect)
+//                    txtColor.setTextColor( ContextCompat.getColor(this@BackgroundActivity, R.color.app_color3))
+//                }
+//                btnColor.onSingleClick {
+//                    iclBg.apply {
+//                        rcvColor.show()
+//                        rcvImage.hide()
+//                    }
+//                    txtColor.setTextColor( ContextCompat.getColor(this@BackgroundActivity, R.color.white))
+//                    btnColor.setBackgroundResource(R.drawable.img_select)
+//                    txtImgage.setTextColor( ContextCompat.getColor(this@BackgroundActivity, R.color.app_color3))
+//                    btnImage.setBackgroundResource(R.drawable.img_unselect)
+//                }
+//            }
             imvBack.onSingleClick {
                 var dialog = DialogExit(
                     this@BackgroundActivity,
@@ -486,7 +487,7 @@ class BackgroundActivity : AbsBaseActivity<ActivityBackgroundBinding>() {
     private fun selectBottomTab(selectedBtn: ImageView) {
         // Danh sách tất cả 4 nút tab
         val tabs = listOf(
-            binding.btnBg to Pair(R.drawable.imv_bg, R.drawable.imv_bg_true),
+//            binding.btnBg to Pair(R.drawable.imv_bg, R.drawable.imv_bg_true),
             binding.btnItem to Pair(R.drawable.imv_item, R.drawable.imv_item_true),
             binding.btnBgText to Pair(R.drawable.imv_bg_text, R.drawable.imv_bg_text_true),
             binding.btnText to Pair(R.drawable.imv_text, R.drawable.imv_text_true)

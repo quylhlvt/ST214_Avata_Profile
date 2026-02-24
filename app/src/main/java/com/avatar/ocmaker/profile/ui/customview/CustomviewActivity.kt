@@ -454,10 +454,15 @@ class CustomviewActivity : AbsBaseActivity<ActivityCustomizeBinding>() {
 
                 // Animate visibility change
                 if (newState) {
-                    binding.llColor.visibility = View.VISIBLE
-                    binding.llColor.alpha = 0f
-                    binding.llColor.animate().alpha(1f).setDuration(200).start()
+                    binding.apply {
+                        imvShowColor.setImageResource(R.drawable.imv_color)
+                        llColor.visibility = View.VISIBLE
+                        llColor.alpha = 0f
+                        llColor.animate().alpha(1f).setDuration(200).start()
+                    }
+
                 } else {
+                    imvShowColor.setImageResource(R.drawable.imv_color_hide)
                     binding.llColor.animate().alpha(0f).setDuration(200).withEndAction {
                         binding.llColor.visibility = View.INVISIBLE
                     }.start()

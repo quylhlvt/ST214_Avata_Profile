@@ -24,7 +24,6 @@ class DialogExit(context: Activity, var type: String) :
             "exit" -> {
                 binding.txtTitle.text = context.getString(R.string.exit)
                 binding.txtTitle.isSelected = true
-                binding.txtContent.post { }
                 binding.txtContent.text =
                     context.getString(R.string.haven_t_saved_it_yet_do_you_want_to_exit)
 //                binding.nativeAds.show()
@@ -38,9 +37,9 @@ class DialogExit(context: Activity, var type: String) :
 
             "network" -> {
                 binding.apply {
-                    frameTitle.setBackgroundResource(R.drawable.bg_title_dialog_nointernet)
-                    constraintLayout.setBackgroundResource(R.drawable.bg_dialog_nointernet)
-                    imgInBgDialog.setImageResource(R.drawable.img_in_nointernet)
+//                    frameTitle.setBackgroundResource(R.drawable.bg_title_dialog_nointernet)
+//                    constraintLayout.setBackgroundResource(R.drawable.bg_dialog_nointernet)
+//                    imgInBgDialog.setImageResource(R.drawable.img_in_nointernet)
                     txtTitle.text = context.getString(R.string.no_internet)
                     txtTitle.isSelected = true
                     btnYes.hide()
@@ -55,9 +54,9 @@ class DialogExit(context: Activity, var type: String) :
 
             "loadingnetwork" -> {
                 binding.apply {
-                    frameTitle.setBackgroundResource(R.drawable.bg_title_dialog_nointernet)
-                    constraintLayout.setBackgroundResource(R.drawable.bg_dialog_nointernet)
-                    imgInBgDialog.setImageResource(R.drawable.img_in_nointernet)
+//                    frameTitle.setBackgroundResource(R.drawable.bg_title_dialog_nointernet)
+//                    constraintLayout.setBackgroundResource(R.drawable.bg_dialog_nointernet)
+//                    imgInBgDialog.setImageResource(R.drawable.img_in_nointernet)
                     txtTitle.text = context.getString(R.string.no_internet)
                     txtTitle.isSelected = true
                     btnYes.hide()
@@ -72,14 +71,14 @@ class DialogExit(context: Activity, var type: String) :
 
             "reset" -> {
                 binding.apply {
-                    frameTitle.setBackgroundResource(R.drawable.bg_title_dialog_reset)
-                    constraintLayout.setBackgroundResource(R.drawable.bg_dialog_reset)
-                    imgInBgDialog.setImageResource(R.drawable.img_in_reset)
-                    val color = ContextCompat.getColor(context, R.color.app_color11)
-                    btnYes.setCardBackgroundColor(color)
-                    btnNo.strokeColor = color
-                    txtNo.setTextColor(color)
-                    txtContent.setTextColor(color)
+//                    frameTitle.setBackgroundResource(R.drawable.bg_title_dialog_reset)
+//                    constraintLayout.setBackgroundResource(R.drawable.bg_dialog_reset)
+//                    imgInBgDialog.setImageResource(R.drawable.img_in_reset)
+//                    val color = ContextCompat.getColor(context, R.color.app_color11)
+//                    btnYes.setCardBackgroundColor(color)
+//                    btnNo.strokeColor = color
+//                    txtNo.setTextColor(color)
+//                    txtContent.setTextColor(color)
 
                     binding.txtTitle.text = context.getString(R.string.reset)
                     binding.txtTitle.isSelected = true
@@ -97,9 +96,9 @@ class DialogExit(context: Activity, var type: String) :
 
             "awaitdata" -> {
                 binding.apply {
-                    frameTitle.setBackgroundResource(R.drawable.bg_title_dialog_nointernet)
-                    constraintLayout.setBackgroundResource(R.drawable.bg_dialog_nointernet)
-                    imgInBgDialog.setImageResource(R.drawable.img_in_nointernet)
+//                    frameTitle.setBackgroundResource(R.drawable.bg_title_dialog_nointernet)
+//                    constraintLayout.setBackgroundResource(R.drawable.bg_dialog_nointernet)
+//                    imgInBgDialog.setImageResource(R.drawable.img_in_nointernet)
                     txtTitle.text = context.getString(R.string.no_internet)
                     txtTitle.isSelected = true
                     btnYes.hide()
@@ -115,9 +114,9 @@ class DialogExit(context: Activity, var type: String) :
 
             "awaitdataHome" -> {
                 binding.apply {
-                    frameTitle.setBackgroundResource(R.drawable.bg_title_dialog_nointernet)
-                    constraintLayout.setBackgroundResource(R.drawable.bg_dialog_nointernet)
-                    imgInBgDialog.setImageResource(R.drawable.img_in_nointernet)
+//                    frameTitle.setBackgroundResource(R.drawable.bg_title_dialog_nointernet)
+//                    constraintLayout.setBackgroundResource(R.drawable.bg_dialog_nointernet)
+//                    imgInBgDialog.setImageResource(R.drawable.img_in_nointernet)
                     txtTitle.text = context.getString(R.string.no_internet)
                     txtTitle.isSelected = true
                     btnYes.hide()

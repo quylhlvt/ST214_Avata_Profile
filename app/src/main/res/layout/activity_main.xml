@@ -17,7 +17,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="50dp"
             android:fontFamily="@font/coda_extra_bold"
             android:gravity="center"
 

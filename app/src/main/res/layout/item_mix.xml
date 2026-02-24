@@ -11,7 +11,7 @@
         <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="4dp"
+            app:cardCornerRadius="20dp"
             app:strokeWidth="0dp"
             app:cardBackgroundColor="@color/transparent"
             android:background="@color/transparent"
@@ -22,6 +22,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_gradient_category"
+        android:padding="4dp"
         >
 
         <FrameLayout
@@ -36,7 +38,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:cardCornerRadius="4dp"
+                app:cardCornerRadius="20dp"
                 app:strokeWidth="0dp"
                 >
 

@@ -15,7 +15,7 @@
     <color name="color_app">#205ABE</color>
     <color name="_CCCCCC">#cccccc</color>
     <color name="showdown_olive">#1F000000</color>
-    <color name="color_draw">#EF4096</color>
+    <color name="color_draw">#78FECB00</color>
     <color name="color_1">#E2D2D2</color>
     <color name="color_2">#DCD5FF</color>
     <color name="color_3">#B7E9F8</color>
@@ -82,8 +82,8 @@
     <color name="app_color2">#006498</color>
     <color name="app_color3">#2AABEE</color>
     <color name="app_color4">#2AABEE</color>
-    <color name="app_color5">#AB5BFF</color>
-    <color name="app_color6">#558B2F</color>
+    <color name="app_color5">#3FDCFF</color>
+    <color name="app_color6">#01579B</color>
     <color name="app_color7">#FF9CFD</color>
     <color name="app_color8">#0EA400</color>
     <color name="app_color9">#FF008C</color>

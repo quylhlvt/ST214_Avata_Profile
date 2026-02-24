@@ -33,7 +33,7 @@
     <string name="pony_maker">Bedroom Maker</string>
     <string name="trending_custom">Quick Create</string>
     <string name="trending">Trending</string>
-    <string name="no_item_here">No current history</string>
+    <string name="no_item_here">No Item Here</string>
     <string name="delete">Delete</string>
     <string name="haven_saved_it_yet_are_you_sure_to_exit">Haven’t saved it yet, are you sure to exit?</string>
     <string name="reset">Reset</string>
@@ -52,7 +52,7 @@
     <string name="no">No</string>
     <string name="do_you_want_to_delete">Do you want to delete?</string>
     <string name="do_you_want_to_reset">Do you want to reset?</string>
-    <string name="maker">Maker</string>
+    <string name="maker">Bedroom Maker</string>
     <string name="game_challenge">Game Challenge</string>
     <string name="my_character">My Character</string>
     <string name="setting">Setting</string>
@@ -76,7 +76,7 @@
     <string name="text">Text</string>
     <string name="type_your_content">Type your content...</string>
     <string name="font">Font</string>
-    <string name="avatar">My Avatar</string>
+    <string name="avatar">My Bedroom</string>
     <string name="design">My Design</string>
     <string name="download_successfully">File downloaded successfully to folder</string>
     <string name="file_deleted_successfully">File deleted successfully</string>

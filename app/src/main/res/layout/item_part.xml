@@ -23,7 +23,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
+                android:layout_marginBottom="2dp"
 
                 >
 
@@ -44,7 +44,7 @@
                         android:layout_height="match_parent"
                         app:cardCornerRadius="4dp"
                         app:strokeWidth="2dp"
-                        app:strokeColor="@color/app_color7"
+                        app:strokeColor="@color/app_color5"
                         app:cardBackgroundColor="#D6FFFFFF"
 
                         >
