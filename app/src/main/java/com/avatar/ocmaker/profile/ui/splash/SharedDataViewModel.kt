@@ -40,10 +40,10 @@ class SharedDataViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 // Gọi getData từ DataHelper
-                getApplication<Application>().getData(apiRepository)
+                getApplication<Application>().getData()
 
                 // Observe DataHelper.arrDataOnline để biết khi nào xong
-                observeDataHelperResponse()
+//                observeDataHelperResponse()
             } catch (e: Exception) {
                 isDataLoading = false
                 _dataLoadingState.postValue(DataLoadingState.Error(e.message ?: "Unknown error"))
@@ -51,38 +51,38 @@ class SharedDataViewModel @Inject constructor(
         }
     }
 
-    private fun observeDataHelperResponse() {
-        DataHelper.arrDataOnline.observeForever { response ->
-            response?.let {
-                when (it.loadingStatus) {
-                    LoadingStatus.Loading -> {
-                        _dataLoadingState.postValue(DataLoadingState.Loading)
-                    }
-
-                    LoadingStatus.Success -> {
-                        // Kiểm tra xem data đã được process chưa
-                        if (DataHelper.arrBlackCentered.isNotEmpty()) {
-                            isDataLoading = false
-                            isDataLoaded = true
-                            _dataLoadingState.postValue(DataLoadingState.Success)
-
-                            // Remove observer sau khi xong
-                            DataHelper.arrDataOnline.removeObserver { }
-                        }
-                    }
-
-                    LoadingStatus.Error -> {
-                        isDataLoading = false
-                        _dataLoadingState.postValue(DataLoadingState.Error("Failed to load data"))
-                    }
-
-                    else -> {
-                        // Do nothing
-                    }
-                }
-            }
-        }
-    }
+//    private fun observeDataHelperResponse() {
+//        DataHelper.arrDataOnline.observeForever { response ->
+//            response?.let {
+//                when (it.loadingStatus) {
+//                    LoadingStatus.Loading -> {
+//                        _dataLoadingState.postValue(DataLoadingState.Loading)
+//                    }
+//
+//                    LoadingStatus.Success -> {
+//                        // Kiểm tra xem data đã được process chưa
+//                        if (DataHelper.arrBlackCentered.isNotEmpty()) {
+//                            isDataLoading = false
+//                            isDataLoaded = true
+//                            _dataLoadingState.postValue(DataLoadingState.Success)
+//
+//                            // Remove observer sau khi xong
+//                            DataHelper.arrDataOnline.removeObserver { }
+//                        }
+//                    }
+//
+//                    LoadingStatus.Error -> {
+//                        isDataLoading = false
+//                        _dataLoadingState.postValue(DataLoadingState.Error("Failed to load data"))
+//                    }
+//
+//                    else -> {
+//                        // Do nothing
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     fun isDataReady(): Boolean {
         return isDataLoaded && DataHelper.arrBlackCentered.isNotEmpty()

@@ -28,7 +28,7 @@
             android:layout_height="0dp"
             android:layout_marginHorizontal="80dp"
             android:textColor="@color/white"
-            android:textSize="22sp"
+            android:textSize="24sp"
             android:fontFamily="@font/rufing_personaluse"
             android:gravity="center"
             app:outerStrokeColor="@color/app_color2"
@@ -69,12 +69,11 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardImv"
-            android:layout_marginVertical="13dp"
+            android:layout_marginTop="50dp"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginHorizontal="29dp"
+            android:layout_marginHorizontal="47dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/tvContent"
             app:layout_constraintTop_toBottomOf="@id/imvBack"
             android:layout_height="0dp"
             app:cardBackgroundColor="@color/transparent"
@@ -97,7 +96,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginBottom="28dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="21dp"
             android:ellipsize="marquee"
             android:fontFamily="@font/roboto_bold_italic"
             android:freezesText="true"
@@ -107,22 +107,21 @@
             android:text="@string/image_has_been_saved_successfully"
             android:textColor="@color/app_color2"
             android:textSize="16sp"
-            android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/llBottom"/>
+            app:layout_constraintTop_toBottomOf="@+id/cardImv" />
+
         <LinearLayout
             android:id="@+id/llBottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="21dp"
             android:visibility="visible"
-            android:layout_marginBottom="270dp"
-            android:layout_marginTop="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/tvContent">
+
             <LinearLayout
                 android:id="@+id/btnMyWork"
                 android:layout_width="match_parent"
@@ -187,23 +186,23 @@
             </LinearLayout>
         </LinearLayout>
 
-<!--        <TextView-->
-<!--            android:id="@+id/imvShare"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_marginHorizontal="15dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:background="@drawable/bg_share_success"-->
-<!--            android:fontFamily="@font/rufing_personaluse"-->
-<!--            android:gravity="center"-->
-<!--            android:text="@string/share"-->
-<!--            android:textColor="@color/app_color"-->
-<!--            android:textSize="16dp"-->
-<!--            android:layout_marginBottom="120dp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="@+id/llBottom"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/llBottom"/>-->
-<!--        &lt;!&ndash; native_ads &ndash;&gt;-->
+        <TextView
+            android:id="@+id/imvShare"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_share_success"
+            android:fontFamily="@font/cookies_regular"
+            android:gravity="center"
+            android:text="@string/share"
+            android:textColor="@color/app_color2"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/llBottom"
+            app:layout_constraintStart_toStartOf="@+id/llBottom"
+            app:layout_constraintTop_toBottomOf="@+id/llBottom" />
+        <!-- native_ads -->
 <!--        <FrameLayout-->
 <!--            android:id="@+id/native_ads"-->
 <!--            android:layout_width="match_parent"-->

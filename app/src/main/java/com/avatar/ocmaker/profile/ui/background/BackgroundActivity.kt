@@ -124,7 +124,7 @@ class BackgroundActivity : AbsBaseActivity<ActivityBackgroundBinding>() {
                     binding.ctl,
                     0f,
                     0f,
-                    dpToPx(200f, applicationContext),
+                    dpToPx(240f, applicationContext),
                     0f
                 )
             } else {

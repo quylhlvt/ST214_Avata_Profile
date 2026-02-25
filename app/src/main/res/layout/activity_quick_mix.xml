@@ -44,7 +44,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/imvBack"
             android:textColor="@color/white"
-            android:textSize="22sp"
+            android:textSize="24sp"
             />
 
         <androidx.recyclerview.widget.RecyclerView

@@ -29,7 +29,6 @@ class App : Application()  {
                 // App vào foreground → mở lại nhạc
                 if (!MusicLocal.isInSplashOrTutorial &&MusicLocal.home)
                     MusicLocal.play(context)
-
             }
             override fun onStop(owner: LifecycleOwner) {
                 // App ra background → tạm dừng nhạc

@@ -70,13 +70,13 @@ class ViewActivity : AbsBaseActivity<ActivityViewBinding>() {
                     }
                     if (!checkDataOnline) {
                         lifecycleScope.launch(Dispatchers.IO) {
-                            getData(apiRepository)
+                            getData()
                         }
                     }
                 } else {
                     if (DataHelper.arrBlackCentered.isEmpty()) {
                         lifecycleScope.launch(Dispatchers.IO) {
-                            getData(apiRepository)
+                            getData()
                         }
                     }
                 }
@@ -85,101 +85,101 @@ class ViewActivity : AbsBaseActivity<ActivityViewBinding>() {
     }
     override fun initView() {
 
-        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
-        registerReceiver(networkReceiver, filter)
-        DataHelper.arrDataOnline.observe(this) {
-            it?.let {
-                when (it.loadingStatus) {
-                    LoadingStatus.Loading -> {
-                        checkCallingDataOnline = true
-                    }
-
-                    LoadingStatus.Success -> {
-                        if (DataHelper.arrBlackCentered.isNotEmpty() && !DataHelper.arrBlackCentered[0].checkDataOnline) {
-                            checkCallingDataOnline = false
-                            val listA = (it as DataResponse.DataSuccess).body ?: return@observe
-                            checkCallingDataOnline = true
-                            val sortedMap = listA
-                                .toList() // Chuyển map -> list<Pair<String, List<X10>>>
-                                .sortedBy { (_, list) ->
-                                    list.firstOrNull()?.level ?: Int.MAX_VALUE
-                                }
-                                .toMap()
-                            sortedMap.forEach { key, list ->
-                                var a = arrayListOf<BodyPartModel>()
-                                list.forEachIndexed { index, x10 ->
-                                    var b = arrayListOf<ColorModel>()
-                                    x10.colorArray.split(",").forEach { coler ->
-                                        var c = arrayListOf<String>()
-                                        if (coler == "") {
-                                            for (i in 1..x10.quantity) {
-                                                c.add(CONST.BASE_URL + "${CONST.BASE_CONNECT}/${x10.position}/${x10.parts}/${i}.png")
-                                            }
-                                            b.add(
-                                                ColorModel(
-                                                    "#",
-                                                    c
-                                                )
-                                            )
-                                        } else {
-                                            for (i in 1..x10.quantity) {
-                                                c.add(CONST.BASE_URL + "${CONST.BASE_CONNECT}/${x10.position}/${x10.parts}/${coler}/${i}.png")
-                                            }
-                                            b.add(
-                                                ColorModel(
-                                                    coler,
-                                                    c
-                                                )
-                                            )
-                                        }
-                                    }
-                                    a.add(
-                                        BodyPartModel(
-                                            "${CONST.BASE_URL}${CONST.BASE_CONNECT}$key/${x10.parts}/nav.png",
-                                            b
-                                        )
-                                    )
-                                }
-                                var dataModel =
-                                    CustomModel(
-                                        "${CONST.BASE_URL}${CONST.BASE_CONNECT}$key/avatar.png",
-                                        a,
-                                        true
-                                    )
-                                dataModel.bodyPart.forEach { mbodyPath ->
-                                    if (mbodyPath.icon.substringBeforeLast("/")
-                                            .substringAfterLast("/").substringAfter("-") == "1"
-                                    ) {
-                                        mbodyPath.listPath.forEach {
-                                            if (it.listPath[0] != "dice") {
-                                                it.listPath.add(0, "dice")
-                                            }
-                                        }
-                                    } else {
-                                        mbodyPath.listPath.forEach {
-                                            if (it.listPath[0] != "none") {
-                                                it.listPath.add(0, "none")
-                                                it.listPath.add(1, "dice")
-                                            }
-                                        }
-                                    }
-                                }
-                                DataHelper.arrBlackCentered.add(0, dataModel)
-                            }
-                        }
-                        checkCallingDataOnline = false
-                    }
-
-                    LoadingStatus.Error -> {
-                        checkCallingDataOnline = false
-                    }
-
-                    else -> {
-                        checkCallingDataOnline = true
-                    }
-                }
-            }
-        }
+//        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+//        registerReceiver(networkReceiver, filter)
+//        DataHelper.arrDataOnline.observe(this) {
+//            it?.let {
+//                when (it.loadingStatus) {
+//                    LoadingStatus.Loading -> {
+//                        checkCallingDataOnline = true
+//                    }
+//
+//                    LoadingStatus.Success -> {
+//                        if (DataHelper.arrBlackCentered.isNotEmpty() && !DataHelper.arrBlackCentered[0].checkDataOnline) {
+//                            checkCallingDataOnline = false
+//                            val listA = (it as DataResponse.DataSuccess).body ?: return@observe
+//                            checkCallingDataOnline = true
+//                            val sortedMap = listA
+//                                .toList() // Chuyển map -> list<Pair<String, List<X10>>>
+//                                .sortedBy { (_, list) ->
+//                                    list.firstOrNull()?.level ?: Int.MAX_VALUE
+//                                }
+//                                .toMap()
+//                            sortedMap.forEach { key, list ->
+//                                var a = arrayListOf<BodyPartModel>()
+//                                list.forEachIndexed { index, x10 ->
+//                                    var b = arrayListOf<ColorModel>()
+//                                    x10.colorArray.split(",").forEach { coler ->
+//                                        var c = arrayListOf<String>()
+//                                        if (coler == "") {
+//                                            for (i in 1..x10.quantity) {
+//                                                c.add(CONST.BASE_URL + "${CONST.BASE_CONNECT}/${x10.position}/${x10.parts}/${i}.png")
+//                                            }
+//                                            b.add(
+//                                                ColorModel(
+//                                                    "#",
+//                                                    c
+//                                                )
+//                                            )
+//                                        } else {
+//                                            for (i in 1..x10.quantity) {
+//                                                c.add(CONST.BASE_URL + "${CONST.BASE_CONNECT}/${x10.position}/${x10.parts}/${coler}/${i}.png")
+//                                            }
+//                                            b.add(
+//                                                ColorModel(
+//                                                    coler,
+//                                                    c
+//                                                )
+//                                            )
+//                                        }
+//                                    }
+//                                    a.add(
+//                                        BodyPartModel(
+//                                            "${CONST.BASE_URL}${CONST.BASE_CONNECT}$key/${x10.parts}/nav.png",
+//                                            b
+//                                        )
+//                                    )
+//                                }
+//                                var dataModel =
+//                                    CustomModel(
+//                                        "${CONST.BASE_URL}${CONST.BASE_CONNECT}$key/avatar.png",
+//                                        a,
+//                                        true
+//                                    )
+//                                dataModel.bodyPart.forEach { mbodyPath ->
+//                                    if (mbodyPath.icon.substringBeforeLast("/")
+//                                            .substringAfterLast("/").substringAfter("-") == "1"
+//                                    ) {
+//                                        mbodyPath.listPath.forEach {
+//                                            if (it.listPath[0] != "dice") {
+//                                                it.listPath.add(0, "dice")
+//                                            }
+//                                        }
+//                                    } else {
+//                                        mbodyPath.listPath.forEach {
+//                                            if (it.listPath[0] != "none") {
+//                                                it.listPath.add(0, "none")
+//                                                it.listPath.add(1, "dice")
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//                                DataHelper.arrBlackCentered.add(0, dataModel)
+//                            }
+//                        }
+//                        checkCallingDataOnline = false
+//                    }
+//
+//                    LoadingStatus.Error -> {
+//                        checkCallingDataOnline = false
+//                    }
+//
+//                    else -> {
+//                        checkCallingDataOnline = true
+//                    }
+//                }
+//            }
+//        }
         path = intent.getStringExtra("data").toString()
         if (intent?.getStringExtra("type") == "avatar") {
             binding.imvEdit.show()

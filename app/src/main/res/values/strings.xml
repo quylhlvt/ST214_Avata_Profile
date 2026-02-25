@@ -106,7 +106,8 @@
     <string name="please_connect_to_the_internet_to_download_more_data">Please connect to the internet to download more data</string>
     <string name="data">Data</string>
     <string name="rate_successful">Thank you for rate our app</string>
-    <string name="quickcreate">Quick Maker</string>
+    <string name="quickcreate">Quick Make</string>
     <string name="generate_random">Generate Random</string>
     <string name="random_cat">Random Bedroom</string>
+    <string name="music">Music</string>
 </resources>

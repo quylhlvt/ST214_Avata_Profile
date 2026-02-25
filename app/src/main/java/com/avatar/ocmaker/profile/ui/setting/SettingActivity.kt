@@ -13,6 +13,8 @@ import com.avatar.ocmaker.profile.utils.shareApp
 import com.avatar.ocmaker.profile.utils.unItem
 import com.avatar.ocmaker.profile.R
 import com.avatar.ocmaker.profile.databinding.ActivitySettingBinding
+import com.avatar.ocmaker.profile.utils.music.MusicLocal
+import com.avatar.ocmaker.profile.utils.music.MusicLocal.status
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -23,6 +25,10 @@ class SettingActivity : AbsBaseActivity<ActivitySettingBinding>() {
     override fun getLayoutId(): Int = R.layout.activity_setting
 
     override fun initView() {
+        binding.imvMusic.setImageResource(
+            if (status(this)) R.drawable.ic_music_app_true
+            else R.drawable.ic_music_app_false
+        )
         binding.titleSetting.isSelected = true
         if (sharedPreferences.getBooleanValue(RATE)) {
             binding.llRateUs.visibility = View.GONE

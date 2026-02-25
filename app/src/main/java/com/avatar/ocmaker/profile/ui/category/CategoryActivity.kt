@@ -51,7 +51,7 @@ class CategoryActivity : AbsBaseActivity<ActivityCategoryBinding>() {
 
                     // Nếu chưa có data online thì gọi API
                     if (!hasOnlineData) {
-                        DataHelper.callApi(apiRepository)
+//                        DataHelper.callApi(apiRepository)
                     }
                 }
             }
@@ -67,18 +67,18 @@ class CategoryActivity : AbsBaseActivity<ActivityCategoryBinding>() {
     override fun initView() {
 
         // Đăng ký broadcast receiver
-        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
-        registerReceiver(networkReceiver, filter)
-
-        // Observe data online
-        observeDataOnline()
-
-        if (DataHelper.arrBlackCentered.size <= 3 && !isInternetAvailable(this@CategoryActivity)) {
-            DialogExit(
-                this@CategoryActivity,
-                "awaitdataHome"
-            ).show()
-        }
+//        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+//        registerReceiver(networkReceiver, filter)
+//
+//        // Observe data online
+//        observeDataOnline()
+//
+//        if (DataHelper.arrBlackCentered.size <= 3 && !isInternetAvailable(this@CategoryActivity)) {
+//            DialogExit(
+//                this@CategoryActivity,
+//                "awaitdataHome"
+//            ).show()
+//        }
 
         if (DataHelper.arrBg.size == 0) {
             finish()
@@ -90,130 +90,130 @@ class CategoryActivity : AbsBaseActivity<ActivityCategoryBinding>() {
     }
 
     private fun observeDataOnline() {
-        DataHelper.arrDataOnline.observe(this) {
-            it?.let {
-                when (it.loadingStatus) {
-                    LoadingStatus.Loading -> {
-                        checkCallingDataOnline = true
-                    }
-
-                    LoadingStatus.Success -> {
-                        // Kiểm tra xem đã có data online chưa
-                        var hasOnlineData = false
-                        DataHelper.arrBlackCentered.forEach { model ->
-                            if (model.checkDataOnline) {
-                                hasOnlineData = true
-                                return@forEach
-                            }
-                        }
-
-                        if (!hasOnlineData) {
-                            checkCallingDataOnline = false
-                            val listA = (it as DataResponse.DataSuccess).body ?: return@observe
-                            checkCallingDataOnline = true
-
-                            val sortedMap = listA
-                                .toList()
-                                .sortedBy { (_, list) ->
-                                    list.firstOrNull()?.level ?: Int.MAX_VALUE
-                                }
-                                .toMap()
-
-                            val newOnlineDataList = arrayListOf<CustomModel>()
-
-                            sortedMap.forEach { key, list ->
-                                val bodyPartList = arrayListOf<BodyPartModel>()
-
-                                list.forEachIndexed { index, x10 ->
-                                    val colorList = arrayListOf<ColorModel>()
-
-                                    x10.colorArray.split(",").forEach { color ->
-                                        val pathList = arrayListOf<String>()
-
-                                        if (color == "") {
-                                            for (i in 1..x10.quantity) {
-                                                pathList.add(CONST.BASE_URL + "${CONST.BASE_CONNECT}/${x10.position}/${x10.parts}/${i}.png")
-                                            }
-                                            colorList.add(ColorModel("#", pathList))
-                                        } else {
-                                            for (i in 1..x10.quantity) {
-                                                pathList.add(CONST.BASE_URL + "${CONST.BASE_CONNECT}/${x10.position}/${x10.parts}/${color}/${i}.png")
-                                            }
-                                            colorList.add(ColorModel(color, pathList))
-                                        }
-                                    }
-
-                                    bodyPartList.add(
-                                        BodyPartModel(
-                                            "${CONST.BASE_URL}${CONST.BASE_CONNECT}$key/${x10.parts}/nav.png",
-                                            colorList
-                                        )
-                                    )
-                                }
-
-                                val dataModel = CustomModel(
-                                    "${CONST.BASE_URL}${CONST.BASE_CONNECT}$key/avatar.png",
-                                    bodyPartList,
-                                    true
-                                )
-
-                                // Xử lý dice và none cho từng body part
-                                dataModel.bodyPart.forEach { mbodyPath ->
-                                    if (mbodyPath.icon.substringBeforeLast("/")
-                                            .substringAfterLast("/").substringAfter("-") == "1"
-                                    ) {
-                                        mbodyPath.listPath.forEach { colorModel ->
-                                            if (colorModel.listPath[0] != "dice") {
-                                                colorModel.listPath.add(0, "dice")
-                                            }
-                                        }
-                                    } else {
-                                        mbodyPath.listPath.forEach { colorModel ->
-                                            if (colorModel.listPath[0] != "none") {
-                                                colorModel.listPath.add(0, "none")
-                                                colorModel.listPath.add(1, "dice")
-                                            }
-                                        }
-                                    }
-                                }
-
-                                newOnlineDataList.add(dataModel)
-                            }
-
-                            // Lấy data offline hiện tại (những data có checkDataOnline = false)
-                            // Lấy data offline chưa bị duplicate
-                            val currentOfflineData = DataHelper.arrBlackCentered
-                                .filter { !it.checkDataOnline }
-                                .distinctBy { it.avt } // Thêm distinct để tránh trùng
-
-                            DataHelper.arrBlackCentered.clear()
-                            newOnlineDataList.reversed().forEach { onlineData ->
-                                DataHelper.arrBlackCentered.add(onlineData)
-                            }
-                            DataHelper.arrBlackCentered.addAll(currentOfflineData)
-
-                            // Cập nhật adapter với danh sách mới
-                            adapter.submitList(DataHelper.arrBlackCentered)
-                        }
-                        checkCallingDataOnline = false
-                    }
-
-                    LoadingStatus.Error -> {
-                        checkCallingDataOnline = false
-                    }
-
-                    else -> {
-                        checkCallingDataOnline = true
-                    }
-                }
-            }
-        }
+//        DataHelper.arrDataOnline.observe(this) {
+//            it?.let {
+//                when (it.loadingStatus) {
+//                    LoadingStatus.Loading -> {
+//                        checkCallingDataOnline = true
+//                    }
+//
+//                    LoadingStatus.Success -> {
+//                        // Kiểm tra xem đã có data online chưa
+//                        var hasOnlineData = false
+//                        DataHelper.arrBlackCentered.forEach { model ->
+//                            if (model.checkDataOnline) {
+//                                hasOnlineData = true
+//                                return@forEach
+//                            }
+//                        }
+//
+//                        if (!hasOnlineData) {
+//                            checkCallingDataOnline = false
+//                            val listA = (it as DataResponse.DataSuccess).body ?: return@observe
+//                            checkCallingDataOnline = true
+//
+//                            val sortedMap = listA
+//                                .toList()
+//                                .sortedBy { (_, list) ->
+//                                    list.firstOrNull()?.level ?: Int.MAX_VALUE
+//                                }
+//                                .toMap()
+//
+//                            val newOnlineDataList = arrayListOf<CustomModel>()
+//
+//                            sortedMap.forEach { key, list ->
+//                                val bodyPartList = arrayListOf<BodyPartModel>()
+//
+//                                list.forEachIndexed { index, x10 ->
+//                                    val colorList = arrayListOf<ColorModel>()
+//
+//                                    x10.colorArray.split(",").forEach { color ->
+//                                        val pathList = arrayListOf<String>()
+//
+//                                        if (color == "") {
+//                                            for (i in 1..x10.quantity) {
+//                                                pathList.add(CONST.BASE_URL + "${CONST.BASE_CONNECT}/${x10.position}/${x10.parts}/${i}.png")
+//                                            }
+//                                            colorList.add(ColorModel("#", pathList))
+//                                        } else {
+//                                            for (i in 1..x10.quantity) {
+//                                                pathList.add(CONST.BASE_URL + "${CONST.BASE_CONNECT}/${x10.position}/${x10.parts}/${color}/${i}.png")
+//                                            }
+//                                            colorList.add(ColorModel(color, pathList))
+//                                        }
+//                                    }
+//
+//                                    bodyPartList.add(
+//                                        BodyPartModel(
+//                                            "${CONST.BASE_URL}${CONST.BASE_CONNECT}$key/${x10.parts}/nav.png",
+//                                            colorList
+//                                        )
+//                                    )
+//                                }
+//
+//                                val dataModel = CustomModel(
+//                                    "${CONST.BASE_URL}${CONST.BASE_CONNECT}$key/avatar.png",
+//                                    bodyPartList,
+//                                    true
+//                                )
+//
+//                                // Xử lý dice và none cho từng body part
+//                                dataModel.bodyPart.forEach { mbodyPath ->
+//                                    if (mbodyPath.icon.substringBeforeLast("/")
+//                                            .substringAfterLast("/").substringAfter("-") == "1"
+//                                    ) {
+//                                        mbodyPath.listPath.forEach { colorModel ->
+//                                            if (colorModel.listPath[0] != "dice") {
+//                                                colorModel.listPath.add(0, "dice")
+//                                            }
+//                                        }
+//                                    } else {
+//                                        mbodyPath.listPath.forEach { colorModel ->
+//                                            if (colorModel.listPath[0] != "none") {
+//                                                colorModel.listPath.add(0, "none")
+//                                                colorModel.listPath.add(1, "dice")
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//
+//                                newOnlineDataList.add(dataModel)
+//                            }
+//
+//                            // Lấy data offline hiện tại (những data có checkDataOnline = false)
+//                            // Lấy data offline chưa bị duplicate
+//                            val currentOfflineData = DataHelper.arrBlackCentered
+//                                .filter { !it.checkDataOnline }
+//                                .distinctBy { it.avt } // Thêm distinct để tránh trùng
+//
+//                            DataHelper.arrBlackCentered.clear()
+//                            newOnlineDataList.reversed().forEach { onlineData ->
+//                                DataHelper.arrBlackCentered.add(onlineData)
+//                            }
+//                            DataHelper.arrBlackCentered.addAll(currentOfflineData)
+//
+//                            // Cập nhật adapter với danh sách mới
+//                            adapter.submitList(DataHelper.arrBlackCentered)
+//                        }
+//                        checkCallingDataOnline = false
+//                    }
+//
+//                    LoadingStatus.Error -> {
+//                        checkCallingDataOnline = false
+//                    }
+//
+//                    else -> {
+//                        checkCallingDataOnline = true
+//                    }
+//                }
+//            }
+//        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         try {
-            unregisterReceiver(networkReceiver)
+//            unregisterReceiver(networkReceiver)
         } catch (e: Exception) {
             e.printStackTrace()
         }

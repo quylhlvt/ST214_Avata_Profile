@@ -22,6 +22,7 @@ import com.avatar.ocmaker.profile.utils.showToast
 import com.bumptech.glide.Glide
 import com.avatar.ocmaker.profile.R
 import com.avatar.ocmaker.profile.databinding.ActivitySuccessBinding
+import com.avatar.ocmaker.profile.utils.shareListFiles
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import javax.inject.Inject
@@ -48,12 +49,12 @@ class SuccessActivity : AbsBaseActivity<ActivitySuccessBinding>() {
     override fun initAction() {
         binding.apply {
             imvBack.onSingleClick { finish() }
-//            imvShare.onClick {
-//                shareListFiles(
-//                    this@SuccessActivity,
-//                    arrayListOf(path)
-//                )
-//            }
+            imvShare.onClick {
+                shareListFiles(
+                    this@SuccessActivity,
+                    arrayListOf(path)
+                )
+            }
             imvHome.onSingleClick {
 
                     startActivity(

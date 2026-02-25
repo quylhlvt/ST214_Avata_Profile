@@ -55,7 +55,7 @@
             android:gravity="center"
             android:text="@string/random_cat"
             android:textColor="@color/white"
-            android:textSize="22sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/imvBack"
             app:layout_constraintEnd_toStartOf="@+id/imvNext"

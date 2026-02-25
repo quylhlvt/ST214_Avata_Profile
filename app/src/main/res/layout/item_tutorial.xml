@@ -40,7 +40,7 @@
             android:gravity="center"
             android:text="@{mTutorialModel.title}"
             android:textColor="@color/white"
-            android:textSize="22sp"
+            android:textSize="24sp"
             android:freezesText="true"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"

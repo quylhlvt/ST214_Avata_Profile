@@ -103,19 +103,19 @@ object DataHelper {
 
     //lớp view
     var listImageSortView = arrayListOf<String>()
-    var assetsLoadProgress = MutableLiveData<LoadingProgress>()
+//    var assetsLoadProgress = MutableLiveData<LoadingProgress>()
 
     //thứ tự navigation
     var listImage = arrayListOf<String>()
 
-    suspend fun Context.getData(apiRepository: ApiRepository) = coroutineScope {
+    suspend fun Context.getData() = coroutineScope {
         val job1 = async(Dispatchers.IO) {
             arrBlackCentered.clear()
-            arrDataOnline.postValue(
-                DataResponse.DataLoading(
-                    LoadingStatus.Loading
-                )
-            )
+//            arrDataOnline.postValue(
+//                DataResponse.DataLoading(
+//                    LoadingStatus.Loading
+//                )
+//            )
             var assetManager = assets
             val data = assetManager.list("data")
             val dataAvatar = data ?: emptyArray()
@@ -136,7 +136,7 @@ object DataHelper {
             }
 
             // Post initial progress
-            assetsLoadProgress.postValue(LoadingProgress(0, totalAvatars))
+//            assetsLoadProgress.postValue(LoadingProgress(0, totalAvatars))
 
             for (mData in data!!) {     //mData - cat1
                 val subFolders = assetManager.list("data/$mData") ?: continue
@@ -222,15 +222,15 @@ object DataHelper {
             getPathStiker()
         }
         awaitAll(job1, job2, job3, job4)
-        callApi(apiRepository)
+//        callApi(apiRepository)
     }
     //    var arrDataOnline = MutableLiveData<CharacterResponse>()
-    var arrDataOnline = MutableLiveData<DataResponse<CharacterResponse?>>()
-    fun callApi(apiRepository: ApiRepository) {
-        GlobalScope.launch {
-            arrDataOnline.postValue(DataResponse.DataSuccess(apiRepository.getFigure()))
-        }
-    }
+//    var arrDataOnline = MutableLiveData<DataResponse<CharacterResponse?>>()
+//    fun callApi(apiRepository: ApiRepository) {
+//        GlobalScope.launch {
+//            arrDataOnline.postValue(DataResponse.DataSuccess(apiRepository.getFigure()))
+//        }
+//    }
 
     fun Context.getPathBGText() {
         arrBgText.clear()
@@ -397,12 +397,7 @@ object DataHelper {
                     R.color.color_9
                 )
             ),
-            SelectedModel(
-                color = ContextCompat.getColor(
-                    context,
-                    R.color.black
-                )
-            ),
+
             SelectedModel(
                 color = ContextCompat.getColor(
                     context,

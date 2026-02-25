@@ -79,7 +79,7 @@ class QuickMixActivity : AbsBaseActivity<ActivityQuickMixBinding>() {
                 // Từ có mạng → mất mạng
                 wasAvailable && !isNetworkAvailable -> {
                     isOfflineMode = true
-                    cancelOnlineLoading()
+//                    cancelOnlineLoading()
                     loadOfflineMode()
                 }
 
@@ -111,9 +111,9 @@ class QuickMixActivity : AbsBaseActivity<ActivityQuickMixBinding>() {
 
     override fun initView() {
         binding.titleQuick.isSelected = true
-        registerNetworkReceiver()
-        isNetworkAvailable = isInternetAvailable(this@QuickMixActivity)
-        isOfflineMode = !isNetworkAvailable
+//        registerNetworkReceiver()
+//        isNetworkAvailable = isInternetAvailable(this@QuickMixActivity)
+//        isOfflineMode = !isNetworkAvailable
         if (DataHelper.arrBg.isEmpty()) {
             finish()
         } else {

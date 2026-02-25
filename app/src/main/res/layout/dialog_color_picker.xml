@@ -94,7 +94,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
-                            android:fontFamily="@font/rufing_personaluse"
+                            android:fontFamily="@font/nunito_extra_bold"
                             android:gravity="center"
                             android:text="@string/done"
                             android:textColor="@color/white"

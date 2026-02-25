@@ -22,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import kotlin.collections.forEach
 import kotlin.collections.toList
@@ -36,12 +37,11 @@ class SplashActivity : AbsBaseActivity<ActivitySplashBinding>() {
     override fun getLayoutId(): Int = R.layout.activity_splash
     override fun initView() {
         MusicLocal.isInSplashOrTutorial = true
-        // Observe data loading TRƯỚC khi load
-        observeDataLoading()
+
+        // Delay 3 giây tối thiểu
         lifecycleScope.launch {
             delay(3000)
             minDelayPassed = true
-            // Nếu data đã sẵn sàng thì chuyển màn ngay
             if (dataReady) {
                 navigateToNextScreen()
             }
@@ -54,125 +54,130 @@ class SplashActivity : AbsBaseActivity<ActivitySplashBinding>() {
         super.onResume()
     }
     override fun initAction() {
-        // Bắt đầu load data
         lifecycleScope.launch(Dispatchers.IO) {
-            getData(apiRepository)
+            getData()
+            dataReady = true
+            if (minDelayPassed) {
+                withContext(Dispatchers.Main) {
+                    navigateToNextScreen()
+                }
+            }
         }
     }
 
     private fun observeDataLoading() {
-        DataHelper.arrDataOnline.observe(this) { response ->
-            response?.let {
-                when (it.loadingStatus) {
-                    LoadingStatus.Loading -> {
-                        // Đang loading
-                    }
-
-                    LoadingStatus.Success -> {
-                        // XỬ LÝ DATA ONLINE (logic từ MainActivity cũ)
-                        if (DataHelper.arrBlackCentered.isNotEmpty() && !DataHelper.arrBlackCentered[0].checkDataOnline) {
-                            val listA = (it as DataResponse.DataSuccess).body
-
-                            if (listA != null) {
-                                // Sort và merge data online
-                                val sortedMap = listA
-                                    .toList()
-                                    .sortedBy { (_, list) ->
-                                        list.firstOrNull()?.level ?: Int.MAX_VALUE
-                                    }
-                                    .toMap()
-
-                                sortedMap.forEach { key, list ->
-                                    val bodyPartList = arrayListOf<BodyPartModel>()
-
-                                    list.forEach { x10 ->
-                                        val colorList = arrayListOf<ColorModel>()
-
-                                        x10.colorArray.split(",").forEach { color ->
-                                            val pathList = arrayListOf<String>()
-
-                                            if (color == "") {
-                                                for (i in 1..x10.quantity) {
-                                                    pathList.add(CONST.BASE_URL + "${CONST.BASE_CONNECT}/${x10.position}/${x10.parts}/${i}.png")
-                                                }
-                                                colorList.add(ColorModel("#", pathList))
-                                            } else {
-                                                for (i in 1..x10.quantity) {
-                                                    pathList.add(CONST.BASE_URL + "${CONST.BASE_CONNECT}/${x10.position}/${x10.parts}/${color}/${i}.png")
-                                                }
-                                                colorList.add(ColorModel(color, pathList))
-                                            }
-                                        }
-
-                                        bodyPartList.add(
-                                            BodyPartModel(
-                                                "${CONST.BASE_URL}${CONST.BASE_CONNECT}$key/${x10.parts}/nav.png",
-                                                colorList
-                                            )
-                                        )
-                                    }
-
-                                    val dataModel = CustomModel(
-                                        "${CONST.BASE_URL}${CONST.BASE_CONNECT}$key/avatar.png",
-                                        bodyPartList,
-                                        true
-                                    )
-
-                                    // Thêm "dice" và "none"
-                                    dataModel.bodyPart.forEach { mbodyPath ->
-                                        if (mbodyPath.icon.substringBeforeLast("/")
-                                                .substringAfterLast("/").substringAfter("-") == "1"
-                                        ) {
-                                            mbodyPath.listPath.forEach { colorModel ->
-                                                if (colorModel.listPath[0] != "dice") {
-                                                    colorModel.listPath.add(0, "dice")
-                                                }
-                                            }
-                                        } else {
-                                            mbodyPath.listPath.forEach { colorModel ->
-                                                if (colorModel.listPath[0] != "none") {
-                                                    colorModel.listPath.add(0, "none")
-                                                    colorModel.listPath.add(1, "dice")
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    DataHelper.arrBlackCentered.add(0, dataModel)
-                                }
-                            }
-                        }
-
-                        // Set dataReady sau khi merge xong
-                        dataReady = true
-
-                        // Nếu đã qua 3 giây thì chuyển màn ngay
-                        if (minDelayPassed) {
-                            navigateToNextScreen()
-                        }
-                    }
-
-                    LoadingStatus.Error -> {
-                        // Nếu lỗi nhưng đã có data offline thì vẫn cho qua
-                        if (DataHelper.arrBlackCentered.isNotEmpty()) {
-                            dataReady = true
-                            if (minDelayPassed) {
-                                navigateToNextScreen()
-                            }
-                        } else {
-                            // Thử load lại sau 2 giây
-                            lifecycleScope.launch(Dispatchers.IO) {
-                                delay(2000)
-                                getData(apiRepository)
-                            }
-                        }
-                    }
-                    else -> {
-                        // Loading hoặc trạng thái khác - đợi
-                    }
-                }
-            }
-        }
+//        DataHelper.arrDataOnline.observe(this) { response ->
+//            response?.let {
+//                when (it.loadingStatus) {
+//                    LoadingStatus.Loading -> {
+//                        // Đang loading
+//                    }
+//
+//                    LoadingStatus.Success -> {
+//                        // XỬ LÝ DATA ONLINE (logic từ MainActivity cũ)
+//                        if (DataHelper.arrBlackCentered.isNotEmpty() && !DataHelper.arrBlackCentered[0].checkDataOnline) {
+//                            val listA = (it as DataResponse.DataSuccess).body
+//
+//                            if (listA != null) {
+//                                // Sort và merge data online
+//                                val sortedMap = listA
+//                                    .toList()
+//                                    .sortedBy { (_, list) ->
+//                                        list.firstOrNull()?.level ?: Int.MAX_VALUE
+//                                    }
+//                                    .toMap()
+//
+//                                sortedMap.forEach { key, list ->
+//                                    val bodyPartList = arrayListOf<BodyPartModel>()
+//
+//                                    list.forEach { x10 ->
+//                                        val colorList = arrayListOf<ColorModel>()
+//
+//                                        x10.colorArray.split(",").forEach { color ->
+//                                            val pathList = arrayListOf<String>()
+//
+//                                            if (color == "") {
+//                                                for (i in 1..x10.quantity) {
+//                                                    pathList.add(CONST.BASE_URL + "${CONST.BASE_CONNECT}/${x10.position}/${x10.parts}/${i}.png")
+//                                                }
+//                                                colorList.add(ColorModel("#", pathList))
+//                                            } else {
+//                                                for (i in 1..x10.quantity) {
+//                                                    pathList.add(CONST.BASE_URL + "${CONST.BASE_CONNECT}/${x10.position}/${x10.parts}/${color}/${i}.png")
+//                                                }
+//                                                colorList.add(ColorModel(color, pathList))
+//                                            }
+//                                        }
+//
+//                                        bodyPartList.add(
+//                                            BodyPartModel(
+//                                                "${CONST.BASE_URL}${CONST.BASE_CONNECT}$key/${x10.parts}/nav.png",
+//                                                colorList
+//                                            )
+//                                        )
+//                                    }
+//
+//                                    val dataModel = CustomModel(
+//                                        "${CONST.BASE_URL}${CONST.BASE_CONNECT}$key/avatar.png",
+//                                        bodyPartList,
+//                                        true
+//                                    )
+//
+//                                    // Thêm "dice" và "none"
+//                                    dataModel.bodyPart.forEach { mbodyPath ->
+//                                        if (mbodyPath.icon.substringBeforeLast("/")
+//                                                .substringAfterLast("/").substringAfter("-") == "1"
+//                                        ) {
+//                                            mbodyPath.listPath.forEach { colorModel ->
+//                                                if (colorModel.listPath[0] != "dice") {
+//                                                    colorModel.listPath.add(0, "dice")
+//                                                }
+//                                            }
+//                                        } else {
+//                                            mbodyPath.listPath.forEach { colorModel ->
+//                                                if (colorModel.listPath[0] != "none") {
+//                                                    colorModel.listPath.add(0, "none")
+//                                                    colorModel.listPath.add(1, "dice")
+//                                                }
+//                                            }
+//                                        }
+//                                    }
+//
+//                                    DataHelper.arrBlackCentered.add(0, dataModel)
+//                                }
+//                            }
+//                        }
+//
+//                        // Set dataReady sau khi merge xong
+//                        dataReady = true
+//
+//                        // Nếu đã qua 3 giây thì chuyển màn ngay
+//                        if (minDelayPassed) {
+//                            navigateToNextScreen()
+//                        }
+//                    }
+//
+//                    LoadingStatus.Error -> {
+//                        // Nếu lỗi nhưng đã có data offline thì vẫn cho qua
+//                        if (DataHelper.arrBlackCentered.isNotEmpty()) {
+//                            dataReady = true
+//                            if (minDelayPassed) {
+//                                navigateToNextScreen()
+//                            }
+//                        } else {
+//                            // Thử load lại sau 2 giây
+//                            lifecycleScope.launch(Dispatchers.IO) {
+//                                delay(2000)
+//                                getData()
+//                            }
+//                        }
+//                    }
+//                    else -> {
+//                        // Loading hoặc trạng thái khác - đợi
+//                    }
+//                }
+//            }
+//        }
     }
 
     private fun navigateToNextScreen() {
