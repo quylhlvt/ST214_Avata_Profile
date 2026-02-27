@@ -39,5 +39,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Avatar Profile Maker"
+rootProject.name = "Bedroom Maker"
 include ':app'

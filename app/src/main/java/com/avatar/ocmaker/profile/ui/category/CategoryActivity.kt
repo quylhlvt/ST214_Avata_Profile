@@ -11,7 +11,7 @@ import com.avatar.ocmaker.profile.data.callapi.reponse.LoadingStatus
 import com.avatar.ocmaker.profile.data.model.BodyPartModel
 import com.avatar.ocmaker.profile.data.model.ColorModel
 import com.avatar.ocmaker.profile.data.model.CustomModel
-import com.avatar.ocmaker.profile.data.repository.ApiRepository
+//import com.avatar.ocmaker.profile.data.repository.ApiRepository
 import com.avatar.ocmaker.profile.dialog.DialogExit
 import com.avatar.ocmaker.profile.ui.customview.CustomviewActivity
 import com.avatar.ocmaker.profile.utils.CONST
@@ -26,11 +26,11 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class CategoryActivity : AbsBaseActivity<ActivityCategoryBinding>() {
-    @Inject
-    lateinit var apiRepository: ApiRepository
+//    @Inject
+//    lateinit var apiRepository: ApiRepository
     val adapter by lazy { CategoryAdapter() }
 
-    private var checkCallingDataOnline = false
+//    private var checkCallingDataOnline = false
 
     private val networkReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -38,23 +38,23 @@ class CategoryActivity : AbsBaseActivity<ActivityCategoryBinding>() {
                 context?.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
             val networkInfo = connectivityManager.activeNetworkInfo
 
-            if (!checkCallingDataOnline) {
-                if (networkInfo != null && networkInfo.isConnected) {
-                    // Kiểm tra đã có data online chưa
-                    var hasOnlineData = false
-                    DataHelper.arrBlackCentered.forEach {
-                        if (it.checkDataOnline) {
-                            hasOnlineData = true
-                            return@forEach
-                        }
-                    }
-
-                    // Nếu chưa có data online thì gọi API
-                    if (!hasOnlineData) {
-//                        DataHelper.callApi(apiRepository)
-                    }
-                }
-            }
+//            if (!checkCallingDataOnline) {
+//                if (networkInfo != null && networkInfo.isConnected) {
+//                    // Kiểm tra đã có data online chưa
+//                    var hasOnlineData = false
+//                    DataHelper.arrBlackCentered.forEach {
+//                        if (it.checkDataOnline) {
+//                            hasOnlineData = true
+//                            return@forEach
+//                        }
+//                    }
+//
+//                    // Nếu chưa có data online thì gọi API
+//                    if (!hasOnlineData) {
+////                        DataHelper.callApi(apiRepository)
+//                    }
+//                }
+//            }
         }
     }
 

@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.avatar.ocmaker.profile.base.AbsBaseActivity
 import com.avatar.ocmaker.profile.data.model.CustomModel
-import com.avatar.ocmaker.profile.data.repository.ApiRepository
 import com.avatar.ocmaker.profile.ui.customview.CustomviewActivity
 import com.avatar.ocmaker.profile.utils.DataHelper
 import com.avatar.ocmaker.profile.utils.isInternetAvailable
@@ -36,12 +35,12 @@ import kotlin.math.abs
 
 @AndroidEntryPoint
 class QuickMixActivity : AbsBaseActivity<ActivityQuickMixBinding>() {
-    private var sizeMix = 30
+    private var sizeMix = 100
     private var isLoading = false
-    private var isOfflineMode = false
+//    private var isOfflineMode = false
     private val arrMix = arrayListOf<CustomModel>()
-    @Inject
-    lateinit var apiRepository: ApiRepository
+//    @Inject
+//    lateinit var apiRepository: ApiRepository
     val adapter by lazy { QuickAdapter(this@QuickMixActivity) }
 
     // Thread-safe cache
@@ -70,37 +69,37 @@ class QuickMixActivity : AbsBaseActivity<ActivityQuickMixBinding>() {
     // Cache size limit
     private val maxCacheSize = 60
 
-    private val networkReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            val wasAvailable = isNetworkAvailable
-            isNetworkAvailable = isInternetAvailable(this@QuickMixActivity)
-
-            when {
-                // Từ có mạng → mất mạng
-                wasAvailable && !isNetworkAvailable -> {
-                    isOfflineMode = true
-//                    cancelOnlineLoading()
-                    loadOfflineMode()
-                }
-
-                // Từ mất mạng → có mạng
-                !wasAvailable && isNetworkAvailable -> {
-                    isOfflineMode = false
-                    lifecycleScope.launch(Dispatchers.Main) {
-                        // Reset trạng thái
-                        loadingJobs.clear()
-                        loadingPositions.clear()
-                        currentLoadingCount.set(0)
-                        layerCache.clear()
-                        arrBitmap.clear()
-
-                        sizeMix = 30
-                        loadAllItems()
-                    }
-                }
-            }
-        }
-    }
+//    private val networkReceiver = object : BroadcastReceiver() {
+//        override fun onReceive(context: Context?, intent: Intent?) {
+//            val wasAvailable = isNetworkAvailable
+//            isNetworkAvailable = isInternetAvailable(this@QuickMixActivity)
+//
+//            when {
+//                // Từ có mạng → mất mạng
+//                wasAvailable && !isNetworkAvailable -> {
+//                    isOfflineMode = true
+////                    cancelOnlineLoading()
+//                    loadOfflineMode()
+//                }
+//
+//                // Từ mất mạng → có mạng
+//                !wasAvailable && isNetworkAvailable -> {
+//                    isOfflineMode = false
+//                    lifecycleScope.launch(Dispatchers.Main) {
+//                        // Reset trạng thái
+//                        loadingJobs.clear()
+//                        loadingPositions.clear()
+//                        currentLoadingCount.set(0)
+//                        layerCache.clear()
+//                        arrBitmap.clear()
+//
+//                        sizeMix = 30
+//                        loadAllItems()
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     override fun getLayoutId(): Int = R.layout.activity_quick_mix
 
@@ -136,27 +135,27 @@ class QuickMixActivity : AbsBaseActivity<ActivityQuickMixBinding>() {
                     preloadVisibleAndNext()
                 }
             })
-            if (isOfflineMode) {
+//            if (isOfflineMode) {
+//                if (DataHelper.arrBlackCentered.isEmpty()) {
+//                    finish()
+//                    return
+//                }
+//                sizeMix = 30
+//                loadOfflineLastCharacter()
+//            } else {
                 if (DataHelper.arrBlackCentered.isEmpty()) {
                     finish()
                     return
                 }
-                sizeMix = 30
-                loadOfflineLastCharacter()
-            } else {
-                if (DataHelper.arrBlackCentered.isEmpty()) {
-                    finish()
-                    return
-                }
-                sizeMix = 30
+                sizeMix = 100
                 loadAllItems()
-            }
+//            }
         }
     }
-    private fun registerNetworkReceiver() {
-        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
-        registerReceiver(networkReceiver, filter)
-    }
+//    private fun registerNetworkReceiver() {
+//        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+//        registerReceiver(networkReceiver, filter)
+//    }
     private fun cancelOnlineLoading() {
         lifecycleScope.launch(Dispatchers.Main) {
             loadingJobs.values.forEach { it.cancel() }
@@ -172,7 +171,7 @@ class QuickMixActivity : AbsBaseActivity<ActivityQuickMixBinding>() {
             arrBitmap.clear()
             layerCache.clear()
             // ✅ Luôn load 20 item
-            sizeMix = 30
+            sizeMix = 100
 
             loadOfflineLastCharacter()
         }
@@ -388,14 +387,14 @@ class QuickMixActivity : AbsBaseActivity<ActivityQuickMixBinding>() {
 
             val model = arrMix[position]
 
-            if (model.checkDataOnline && isOfflineMode) {
+            if (model.checkDataOnline ) {
                 return
             }
 
             if (!isVisible) {
                 while (currentLoadingCount.get() >= maxConcurrentLoads) {
                     delay(20)
-                    if (model.checkDataOnline && isOfflineMode) {
+                    if (model.checkDataOnline ) {
                         return
                     }
                 }
@@ -415,7 +414,7 @@ class QuickMixActivity : AbsBaseActivity<ActivityQuickMixBinding>() {
             val listImageSortView = adapter.arrListImageSortView[position]
             val coordSet = adapter.listArrayInt[position]
 
-            if (model.checkDataOnline && isOfflineMode) {
+            if (model.checkDataOnline ) {
                 return
             }
 
@@ -447,7 +446,7 @@ class QuickMixActivity : AbsBaseActivity<ActivityQuickMixBinding>() {
         coordSet: ArrayList<ArrayList<Int>>
     ): Pair<Int, Int> = withContext(Dispatchers.IO) {
         try {
-            if (model.checkDataOnline && isOfflineMode) {
+            if (model.checkDataOnline) {
                 return@withContext Pair(256, 256)
             }
 
@@ -482,13 +481,13 @@ class QuickMixActivity : AbsBaseActivity<ActivityQuickMixBinding>() {
     private suspend fun loadSingleBitmap(path: String, width: Int, height: Int, isOnlineData: Boolean): Bitmap? {
         layerCache[path]?.let { return it }
 
-        if (isOnlineData && isOfflineMode) {
+        if (isOnlineData ) {
             return null
         }
 
         return withContext(Dispatchers.IO) {
             try {
-                if (isOnlineData && isOfflineMode) {
+                if (isOnlineData) {
                     return@withContext null
                 }
 
@@ -515,7 +514,7 @@ class QuickMixActivity : AbsBaseActivity<ActivityQuickMixBinding>() {
         height: Int
     ): Bitmap? = withContext(bitmapDispatcher) {
         try {
-            if (blackCentered.checkDataOnline && isOfflineMode) {
+            if (blackCentered.checkDataOnline ) {
                 return@withContext null
             }
 
@@ -527,7 +526,7 @@ class QuickMixActivity : AbsBaseActivity<ActivityQuickMixBinding>() {
 
             val layers = listImageSortView.mapIndexed { index, icon ->
                 async(Dispatchers.IO) {
-                    if (blackCentered.checkDataOnline && isOfflineMode) {
+                    if (blackCentered.checkDataOnline) {
                         return@async null
                     }
 

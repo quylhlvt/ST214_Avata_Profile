@@ -10,7 +10,7 @@ object CONST {
     val LANGUAGE = "LANGUAGE"
     val PERMISON = "PERMISON"
     val VERSIONCODE = "VERSIONCODE"
-    var NAME_SAVE_FILE = "Avatar Profile Maker"
+    var NAME_SAVE_FILE = "Bedroom Maker"
     val ASSET: String = "file:///android_asset/"
     val BASE_URL_2 = "https://lvtglobal.site/"
     val BASE_URL_1 = "https://lvtglobal.tech/"

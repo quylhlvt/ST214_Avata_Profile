@@ -3,20 +3,15 @@ package com.avatar.ocmaker.profile.ui.view
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Build
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.lifecycleScope
+import com.avatar.ocmaker.profile.R
 import com.avatar.ocmaker.profile.base.AbsBaseActivity
-import com.avatar.ocmaker.profile.data.callapi.reponse.DataResponse
-import com.avatar.ocmaker.profile.data.callapi.reponse.LoadingStatus
-import com.avatar.ocmaker.profile.data.model.BodyPartModel
-import com.avatar.ocmaker.profile.data.model.ColorModel
-import com.avatar.ocmaker.profile.data.model.CustomModel
-import com.avatar.ocmaker.profile.data.repository.ApiRepository
+import com.avatar.ocmaker.profile.databinding.ActivityViewBinding
 import com.avatar.ocmaker.profile.dialog.DialogExit
 import com.avatar.ocmaker.profile.ui.customview.CustomviewActivity
 import com.avatar.ocmaker.profile.ui.customview.CustomviewViewModel
@@ -37,8 +32,6 @@ import com.avatar.ocmaker.profile.utils.showToast
 import com.avatar.ocmaker.profile.utils.toList
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.avatar.ocmaker.profile.R
-import com.avatar.ocmaker.profile.databinding.ActivityViewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -48,8 +41,8 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class ViewActivity : AbsBaseActivity<ActivityViewBinding>() {
-    @Inject
-    lateinit var apiRepository: ApiRepository
+//    @Inject
+//    lateinit var apiRepository: ApiRepository
     var checkCallingDataOnline = false
     val viewModel: CustomviewViewModel by viewModels()
     var path = ""

@@ -18,7 +18,7 @@ import com.avatar.ocmaker.profile.data.callapi.reponse.LoadingStatus
 import com.avatar.ocmaker.profile.data.model.BodyPartModel
 import com.avatar.ocmaker.profile.data.model.ColorModel
 import com.avatar.ocmaker.profile.data.model.CustomModel
-import com.avatar.ocmaker.profile.data.repository.ApiRepository
+//import com.avatar.ocmaker.profile.data.repository.ApiRepository
 import com.avatar.ocmaker.profile.dialog.DialogExit
 import com.avatar.ocmaker.profile.ui.customview.CustomviewActivity
 import com.avatar.ocmaker.profile.utils.CONST
@@ -30,17 +30,20 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.avatar.ocmaker.profile.R
 import com.avatar.ocmaker.profile.databinding.ActivityRandomCatBinding
+import com.avatar.ocmaker.profile.ui.background.BackgroundActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.Job
+import java.io.File
+import java.io.FileOutputStream
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class RandomCatActivity : AbsBaseActivity<ActivityRandomCatBinding>() {
-    @Inject
-    lateinit var apiRepository: ApiRepository
+//    @Inject
+//    lateinit var apiRepository: ApiRepository
     private var randomModel: CustomModel? = null
     private var randomCoords: ArrayList<ArrayList<Int>>? = null
     private var listImageSortView: ArrayList<String>? = null
@@ -397,7 +400,7 @@ class RandomCatActivity : AbsBaseActivity<ActivityRandomCatBinding>() {
                             .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                             .submit()
                             .get()
-                        val size = Pair(bmp.width / 2, bmp.height / 2)
+                        val size = Pair(bmp.width , bmp.height )
                         bmp.recycle()
                         return@withContext size
                     }
@@ -439,19 +442,39 @@ class RandomCatActivity : AbsBaseActivity<ActivityRandomCatBinding>() {
                         DialogExit(this@RandomCatActivity, "network").show()
                         return@onSingleClick
                     }
-                    val index = DataHelper.arrBlackCentered.indexOf(model)
-                    if (index != -1) {
-                        startActivity(
-                            newIntent(this@RandomCatActivity, CustomviewActivity::class.java)
-                                .putExtra("data", index)
-                                .putExtra("arr", randomCoords)
-                        )
+
+                    // Convert bitmap → file tạm → gửi path sang BackgroundActivity
+                    val bitmap = characterBitmap
+                    if (bitmap != null) {
+                        lifecycleScope.launch(Dispatchers.IO) {
+                            val imagePath = saveBitmapToTempFile(bitmap)
+                            withContext(Dispatchers.Main) {
+                                if (imagePath != null) {
+                                    startActivity(
+                                        Intent(this@RandomCatActivity, BackgroundActivity::class.java)
+                                            .putExtra("path", imagePath)  // gửi path ảnh
+                                    )
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
     }
-
+    private fun saveBitmapToTempFile(bitmap: Bitmap): String? {
+        return try {
+            val file = File(cacheDir, "random_character_${System.currentTimeMillis()}.png")
+            val out = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
+            out.flush()
+            out.close()
+            file.absolutePath
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
 //    override fun onDestroy() {
 //        super.onDestroy()
 //        unregisterReceiver(networkReceiver)

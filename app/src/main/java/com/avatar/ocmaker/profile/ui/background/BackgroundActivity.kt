@@ -20,7 +20,7 @@ import com.avatar.ocmaker.profile.custom.Draw
 import com.avatar.ocmaker.profile.custom.DrawView
 import com.avatar.ocmaker.profile.custom.DrawableDraw
 import com.avatar.ocmaker.profile.custom.listener.listenerdraw.OnDrawListener
-import com.avatar.ocmaker.profile.data.repository.ApiRepository
+//import com.avatar.ocmaker.profile.data.repository.ApiRepository
 import com.avatar.ocmaker.profile.dialog.ChooseColorDialog
 import com.avatar.ocmaker.profile.dialog.DialogExit
 import com.avatar.ocmaker.profile.dialog.DialogSpeech
@@ -60,8 +60,8 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class BackgroundActivity : AbsBaseActivity<ActivityBackgroundBinding>() {
-    @Inject
-    lateinit var apiRepository: ApiRepository
+//    @Inject
+//    lateinit var apiRepository: ApiRepository
     val adapterBGText by lazy { BackGroundTextAdapter() }
     val adapterColor by lazy { ColorAdapter() }
     val adapterColorText by lazy { ColorTextAdapter() }
@@ -343,7 +343,7 @@ class BackgroundActivity : AbsBaseActivity<ActivityBackgroundBinding>() {
                                     false
                                 viewModel.textColorList[1].isSelected = true
                                 adapterColorText.posSelect = 1
-                                iclText.edt.setTextColor("#000000".toColorInt())
+                                iclText.edt.setTextColor("#FFA843".toColorInt())
                                 adapterColorText.submitList(viewModel.textColorList)
 
                                 if (adapterFont.posSelect > 0) {
@@ -553,7 +553,7 @@ class BackgroundActivity : AbsBaseActivity<ActivityBackgroundBinding>() {
                     viewModel.textColorList[adapterColorText.posSelect].isSelected = false
                     viewModel.textColorList[1].isSelected = true
                     adapterColorText.posSelect = 1
-                    iclText.edt.setTextColor("#000000".toColorInt())
+                    iclText.edt.setTextColor("#FFA843".toColorInt())
                     adapterColorText.submitList(viewModel.textColorList)
 
                     if (adapterFont.posSelect > 0) {

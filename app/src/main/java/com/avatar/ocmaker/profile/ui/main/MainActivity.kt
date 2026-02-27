@@ -13,7 +13,7 @@ import com.avatar.ocmaker.profile.data.callapi.reponse.LoadingStatus
 import com.avatar.ocmaker.profile.data.model.BodyPartModel
 import com.avatar.ocmaker.profile.data.model.ColorModel
 import com.avatar.ocmaker.profile.data.model.CustomModel
-import com.avatar.ocmaker.profile.data.repository.ApiRepository
+//import com.avatar.ocmaker.profile.data.repository.ApiRepository
 import com.avatar.ocmaker.profile.dialog.DialogExit
 import com.avatar.ocmaker.profile.ui.category.CategoryActivity
 import com.avatar.ocmaker.profile.ui.my_creation.MyCreationActivity
@@ -39,39 +39,39 @@ import kotlin.collections.forEach
 
 @AndroidEntryPoint
 class MainActivity : AbsBaseActivity<ActivityMainBinding>() {
-    @Inject
-    lateinit var apiRepository: ApiRepository
-    var checkCallingDataOnline = false
+//    @Inject
+//    lateinit var apiRepository: ApiRepository
+//    var checkCallingDataOnline = false
     override fun getLayoutId(): Int = R.layout.activity_main
-    private var networkReceiver: BroadcastReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            val connectivityManager =
-                context?.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
-            val networkInfo = connectivityManager.activeNetworkInfo
-            if (!checkCallingDataOnline) {
-                if (networkInfo != null && networkInfo.isConnected) {
-                    var checkDataOnline = false
-                    DataHelper.arrBlackCentered.forEach {
-                        if (it.checkDataOnline) {
-                            checkDataOnline = true
-                            return@forEach
-                        }
-                    }
-                    if (!checkDataOnline) {
-                        lifecycleScope.launch(Dispatchers.IO) {
-                            getData()
-                        }
-                    }
-                } else {
-                    if (DataHelper.arrBlackCentered.isEmpty()) {
-                        lifecycleScope.launch(Dispatchers.IO) {
-                            getData()
-                        }
-                    }
-                }
-            }
-        }
-    }
+//    private var networkReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+//        override fun onReceive(context: Context?, intent: Intent?) {
+//            val connectivityManager =
+//                context?.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+//            val networkInfo = connectivityManager.activeNetworkInfo
+////            if (!checkCallingDataOnline) {
+////                if (networkInfo != null && networkInfo.isConnected) {
+////                    var checkDataOnline = false
+////                    DataHelper.arrBlackCentered.forEach {
+////                        if (it.checkDataOnline) {
+////                            checkDataOnline = true
+////                            return@forEach
+////                        }
+////                    }
+////                    if (!checkDataOnline) {
+////                        lifecycleScope.launch(Dispatchers.IO) {
+////                            getData()
+////                        }
+////                    }
+////                } else {
+////                    if (DataHelper.arrBlackCentered.isEmpty()) {
+////                        lifecycleScope.launch(Dispatchers.IO) {
+////                            getData()
+////                        }
+////                    }
+////                }
+////            }
+//        }
+//    }
     override fun onRestart() {
         super.onRestart()
         val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)

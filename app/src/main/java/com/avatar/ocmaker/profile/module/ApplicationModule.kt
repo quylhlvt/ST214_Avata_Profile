@@ -2,7 +2,7 @@ package com.avatar.ocmaker.profile.module
 
 import android.content.Context
 import com.avatar.ocmaker.profile.data.callapi.ApiHelper
-import com.avatar.ocmaker.profile.data.repository.ApiRepository
+//import com.avatar.ocmaker.profile.data.repository.ApiRepository
 import com.avatar.ocmaker.profile.data.repository.RoomRepository
 import com.avatar.ocmaker.profile.utils.SharedPreferenceUtils
 import dagger.Module
@@ -20,16 +20,16 @@ class ApplicationModule {
     fun providerSharedPreference(@ApplicationContext appContext: Context): SharedPreferenceUtils {
         return SharedPreferenceUtils.Companion.getInstance(appContext)
     }
-    @Singleton
-    @Provides
-    fun providerApi(@ApplicationContext context: Context): ApiHelper {
-        return ApiHelper(context)
-    }
-    @Singleton
-    @Provides
-    fun providerApiRepository(apiHelper: ApiHelper): ApiRepository {
-        return ApiRepository(apiHelper)
-    }
+//    @Singleton
+//    @Provides
+//    fun providerApi(@ApplicationContext context: Context): ApiHelper {
+//        return ApiHelper(context)
+//    }
+//    @Singleton
+//    @Provides
+//    fun providerApiRepository(apiHelper: ApiHelper): ApiRepository {
+//        return ApiRepository(apiHelper)
+//    }
     @Singleton
     @Provides
     fun providerRepository(@ApplicationContext context: Context): RoomRepository {

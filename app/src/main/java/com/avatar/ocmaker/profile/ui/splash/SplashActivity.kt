@@ -8,7 +8,7 @@ import com.avatar.ocmaker.profile.data.callapi.reponse.LoadingStatus
 import com.avatar.ocmaker.profile.data.model.BodyPartModel
 import com.avatar.ocmaker.profile.data.model.ColorModel
 import com.avatar.ocmaker.profile.data.model.CustomModel
-import com.avatar.ocmaker.profile.data.repository.ApiRepository
+//import com.avatar.ocmaker.profile.data.repository.ApiRepository
 import com.avatar.ocmaker.profile.ui.language.LanguageActivity
 import com.avatar.ocmaker.profile.ui.tutorial.TutorialActivity
 import com.avatar.ocmaker.profile.utils.CONST
@@ -28,8 +28,8 @@ import kotlin.collections.forEach
 import kotlin.collections.toList
 @AndroidEntryPoint
 class SplashActivity : AbsBaseActivity<ActivitySplashBinding>() {
-    @Inject
-    lateinit var apiRepository: ApiRepository
+//    @Inject
+//    lateinit var apiRepository: ApiRepository
     @Inject
     lateinit var sharedPreferenceUtils: SharedPreferenceUtils
     private var minDelayPassed = false

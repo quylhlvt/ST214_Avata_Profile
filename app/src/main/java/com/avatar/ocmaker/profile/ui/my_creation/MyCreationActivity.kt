@@ -30,7 +30,6 @@ import com.avatar.ocmaker.profile.data.callapi.reponse.LoadingStatus
 import com.avatar.ocmaker.profile.data.model.BodyPartModel
 import com.avatar.ocmaker.profile.data.model.ColorModel
 import com.avatar.ocmaker.profile.data.model.CustomModel
-import com.avatar.ocmaker.profile.data.repository.ApiRepository
 import com.avatar.ocmaker.profile.dialog.CreateNameDialog
 import com.avatar.ocmaker.profile.dialog.DialogExit
 import com.avatar.ocmaker.profile.ui.customview.CustomviewActivity
@@ -75,9 +74,6 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MyCreationActivity : WhatsappSharingActivity<ActivityMyCreationBinding>() {
-    @Inject
-    lateinit var apiRepository: ApiRepository
-    var checkCallingDataOnline = false
     val viewModel: CustomviewViewModel by viewModels()
     var checkAvatar = true
     private val permissionViewModel: PermissionViewModel by viewModels()
@@ -86,28 +82,28 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityMyCreationBinding>() 
             val connectivityManager =
                 context?.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
             val networkInfo = connectivityManager.activeNetworkInfo
-            if (!checkCallingDataOnline) {
-                if (networkInfo != null && networkInfo.isConnected) {
-                    var checkDataOnline = false
-                    DataHelper.arrBlackCentered.forEach {
-                        if (it.checkDataOnline) {
-                            checkDataOnline = true
-                            return@forEach
-                        }
-                    }
-                    if (!checkDataOnline) {
-                        lifecycleScope.launch(Dispatchers.IO) {
-                            getData()
-                        }
-                    }
-                } else {
-                    if (DataHelper.arrBlackCentered.isEmpty()) {
-                        lifecycleScope.launch(Dispatchers.IO) {
-                            getData()
-                        }
-                    }
-                }
-            }
+//            if (!checkCallingDataOnline) {
+//                if (networkInfo != null && networkInfo.isConnected) {
+//                    var checkDataOnline = false
+//                    DataHelper.arrBlackCentered.forEach {
+//                        if (it.checkDataOnline) {
+//                            checkDataOnline = true
+//                            return@forEach
+//                        }
+//                    }
+//                    if (!checkDataOnline) {
+//                        lifecycleScope.launch(Dispatchers.IO) {
+//                            getData()
+//                        }
+//                    }
+//                } else {
+//                    if (DataHelper.arrBlackCentered.isEmpty()) {
+//                        lifecycleScope.launch(Dispatchers.IO) {
+//                            getData()
+//                        }
+//                    }
+//                }
+//            }
         }
     }
 

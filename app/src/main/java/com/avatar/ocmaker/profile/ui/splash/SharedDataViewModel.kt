@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.avatar.ocmaker.profile.data.callapi.reponse.LoadingStatus
-import com.avatar.ocmaker.profile.data.repository.ApiRepository
+//import com.avatar.ocmaker.profile.data.repository.ApiRepository
 import com.avatar.ocmaker.profile.utils.DataHelper
 import com.avatar.ocmaker.profile.utils.DataHelper.getData
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,8 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SharedDataViewModel @Inject constructor(
-    application: Application,
-    private val apiRepository: ApiRepository
+    application: Application
 ) : AndroidViewModel(application) {
 
     private val _dataLoadingState = MutableLiveData<DataLoadingState>()

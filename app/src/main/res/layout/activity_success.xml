@@ -29,7 +29,7 @@
             android:layout_marginHorizontal="80dp"
             android:textColor="@color/white"
             android:textSize="24sp"
-            android:fontFamily="@font/rufing_personaluse"
+            android:fontFamily="@font/cookies_regular"
             android:gravity="center"
             app:outerStrokeColor="@color/app_color2"
             app:outerStrokeWidth="2dp"

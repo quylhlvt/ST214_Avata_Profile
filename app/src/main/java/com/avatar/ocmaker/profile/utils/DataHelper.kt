@@ -14,7 +14,6 @@ import com.avatar.ocmaker.profile.data.model.ColorModel
 import com.avatar.ocmaker.profile.data.model.CustomModel
 import com.avatar.ocmaker.profile.data.model.LanguageModel
 import com.avatar.ocmaker.profile.data.model.SelectedModel
-import com.avatar.ocmaker.profile.data.repository.ApiRepository
 import com.avatar.ocmaker.profile.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
